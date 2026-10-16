@@ -23,6 +23,9 @@ import crm from "../../assets/icons/crm-icon.png";
 import whatsapp from "../../assets/icons/whatsapp-icon.png";
 import box from "../../assets/icons/box-icon.png";
 import phone from "../../assets/icons/phone-icon.png";
+import cftv from "../../assets/icons/cftv-icon.png";
+import intercom from "../../assets/icons/intercom-icon.png";
+import acessControl from "../../assets/icons/acess-control-icon.png";
 
 const WIDTH = 1600;
 const HEIGHT = 600;
@@ -51,9 +54,12 @@ const joints = [
   [990, 364],
 ];
 
-function Side({ mirrored = false, icons = [] }) {
+function Side({ mirrored = false, icons = [], color }) {
   return (
-    <g transform={mirrored ? `translate(${WIDTH} 0) scale(-1 1)` : undefined}>
+    <g
+      transform={mirrored ? `translate(${WIDTH} 0) scale(-1 1)` : undefined}
+      style={color ? { color } : undefined}
+    >
       {/* Linhas base */}
       {paths.map(([d], i) => (
         <path
@@ -112,7 +118,12 @@ function Side({ mirrored = false, icons = [] }) {
   );
 }
 
-export default function CircuitLines({ className = "", icons = {} }) {
+/**
+ * Cores de cada lado (linhas, pulsos, nós e círculos dos ícones):
+ *  - leftColor:  se não passar, usa a cor do texto do componente (ex.: text-blue)
+ *  - rightColor: padrão cinza #4b5563
+ */
+export default function CircuitLines({ className = "", icons = {}, leftColor, rightColor = "#4b5563" }) {
   const { left = [
             <img src={chatbot} alt="" />,
             <img src={crm} alt="" />,
@@ -123,9 +134,9 @@ export default function CircuitLines({ className = "", icons = {} }) {
   ], right = [
             <img src={box} alt="" />,
             <img src={phone} alt="" />,
-            <img src={box} alt="" />,
-            <img src={phone} alt="" />,
-            <img src={box} alt="" />,
+            <img src={cftv} alt="" />,
+            <img src={intercom} alt="" />,
+            <img src={acessControl} alt="" />,
   ] } = icons;
 
   return (
@@ -163,7 +174,7 @@ export default function CircuitLines({ className = "", icons = {} }) {
           animation: circuit-pulse 4s linear infinite;
         }
         .circuit-slot {
-          fill: transparent; /* neutral-800 */
+          fill: #f2f2f2;
           animation: circuit-slot 4s ease-out infinite;
         }
         @keyframes circuit-draw {
@@ -186,8 +197,8 @@ export default function CircuitLines({ className = "", icons = {} }) {
         }
       `}</style>
 
-      <Side icons={right} />
-      <Side mirrored icons={left} />
+      <Side icons={right} color={rightColor} />
+      <Side mirrored icons={left} color={leftColor} />
     </svg>
   );
 }
