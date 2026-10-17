@@ -31,7 +31,7 @@ export default function Navbar() {
         </ul>
 
         {/* CTA */}
-        <Button size="md" className="min-w-[140px]">
+        <Button size="md" className="min-w-[140px] cursor-pointer">
           Fale conosco
         </Button>
       </nav>

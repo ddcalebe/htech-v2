@@ -26,6 +26,8 @@ import phone from "../../assets/icons/phone-icon.png";
 import cftv from "../../assets/icons/cftv-icon.png";
 import intercom from "../../assets/icons/intercom-icon.png";
 import acessControl from "../../assets/icons/acess-control-icon.png";
+import integration from "../../assets/icons/integration-icon.png";
+import ai from "../../assets/icons/ai-icon.png";
 
 const WIDTH = 1600;
 const HEIGHT = 600;
@@ -128,8 +130,8 @@ export default function CircuitLines({ className = "", icons = {}, leftColor, ri
             <img src={chatbot} alt="" />,
             <img src={crm} alt="" />,
             <img src={whatsapp} alt="" />,
-            <img src={chatbot} alt="" />,
-            <img src={crm} alt="" />,
+            <img src={integration} alt="" />,
+            <img src={ai} alt="" />,
 
   ], right = [
             <img src={box} alt="" />,

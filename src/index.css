@@ -5,3 +5,18 @@
   --color-primary-gray: #6e6e6e;
   --color-secondary-gray: #f5f5f5;
 }
+
+html {
+  /* Rolagem suave ao clicar em links internos (#solucoes-corporativas, etc.) */
+  scroll-behavior: smooth;
+
+  /* Para a rolagem antes, descontando a navbar fixa + um respiro */
+  scroll-padding-top: 100px;
+}
+
+/* Quem pediu "reduzir movimento" no sistema continua com o pulo direto */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

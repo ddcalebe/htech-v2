@@ -3,22 +3,43 @@ import CircuitLines from "../ui/CircuitLines";
 import nuvem from "../../assets/logo/htech-nuvem.png";
 import cidade from "../../assets/bg/cidade.svg";
 
+// Quanto o mapa desce além do Hero, nas laterais
+const MAP_EXTRA = 320;
+// Cor do mapa na parte que fica fora do Hero (sobre a seção escura)
+const MAP_EXTRA_COLOR = "var(--color-primary-gray)";
+
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[600px] flex-col items-center justify-center overflow-hidden bg-secondary-gray px-4 py-24">
-      {/* Fundo: mapa da cidade. A cor vem do bg-primary-gray e a intensidade do opacity-40 */}
+    <section className="relative flex min-h-[600px] flex-col items-center justify-center overflow-x-clip bg-secondary-gray px-4 py-24">
+      {/* Fundo: mapa da cidade, com intensidade em opacity-40.
+          No centro o mapa termina na base do Hero; nas laterais ele continua para baixo e vai sumindo. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-primary-gray opacity-40"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] opacity-40"
         style={{
-          maskImage: `url(${cidade})`,
-          WebkitMaskImage: `url(${cidade})`,
-          maskSize: "cover",
-          WebkitMaskSize: "cover",
-          maskPosition: "center",
-          WebkitMaskPosition: "center",
+          height: `calc(100% + ${MAP_EXTRA}px)`,
+          // cor do mapa: primary-gray dentro do Hero, mais claro na parte que desce sobre a seção escura
+          background: `linear-gradient(to bottom, var(--color-primary-gray) calc(100% - ${MAP_EXTRA}px), ${MAP_EXTRA_COLOR} calc(100% - ${MAP_EXTRA}px))`,
+          maskImage: [
+            `url(${cidade})`,
+            // "buraco" oval embaixo, no centro: é ele que faz o mapa terminar na base do Hero
+            `radial-gradient(ellipse 40% ${MAP_EXTRA + 140}px at 50% 100%, transparent 68%, #000 100%)`,
+            // as laterais vão sumindo até o fim do mapa
+            `linear-gradient(to bottom, #000 calc(100% - ${MAP_EXTRA / 2}px), transparent 100%)`,
+          ].join(", "),
+          WebkitMaskImage: [
+            `url(${cidade})`,
+            `radial-gradient(ellipse 40% ${MAP_EXTRA + 140}px at 50% 100%, transparent 68%, #000 100%)`,
+            `linear-gradient(to bottom, #000 calc(100% - ${MAP_EXTRA / 2}px), transparent 100%)`,
+          ].join(", "),
+          maskSize: "cover, 100% 100%, 100% 100%",
+          WebkitMaskSize: "cover, 100% 100%, 100% 100%",
+          maskPosition: "top center",
+          WebkitMaskPosition: "top center",
           maskRepeat: "no-repeat",
           WebkitMaskRepeat: "no-repeat",
+          maskComposite: "intersect",
+          WebkitMaskComposite: "source-in",
         }}
       />
 
@@ -27,7 +48,7 @@ export default function Hero() {
       </h1>
 
       {/* Círculo da nuvem + linhas de circuito */}
-      <div className="relative mb-16 flex items-center justify-center">
+      <div className="relative z-10 mb-16 flex items-center justify-center">
         <CircuitLines className="absolute left-1/2 top-1/2 h-[600px] w-[1600px] max-w-none -translate-x-1/2 -translate-y-1/2 text-blue" />
 
         <div
@@ -37,7 +58,6 @@ export default function Hero() {
               "-14px 0 40px -8px color-mix(in srgb, var(--color-blue) 45%, transparent), 14px 0 40px -8px rgb(75 85 99 / 0.45)",
           }}
         >
-          {/* Borda: metade esquerda azul, metade direita cinza */}
           {/* Borda: metade azul (esquerda), metade cinza (direita), com degradê nas junções */}
           <span
             aria-hidden="true"
