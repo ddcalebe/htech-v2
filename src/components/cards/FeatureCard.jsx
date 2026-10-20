@@ -1,27 +1,36 @@
 import Button from "../ui/Button";
+import LogoLayer from "../ui/LogoLayer";
 
-/**
- * Card usado em "Agente de IA" e "Chatbot".
- * reverse = true coloca a imagem à esquerda e o texto à direita.
- */
-export default function FeatureCard({ icon, title, description, href, reverse = false }) {
+/** Card dos itens inclusos (Agente de IA, Chatbot...). */
+export default function FeatureCard({ icon, title, description, href, image }) {
   return (
-    <article className="flex h-full flex-col rounded-xl bg-[#0B2BC4] p-4 text-white">
-      <header className="flex items-center gap-2">
-        {icon && <span className="h-7 w-7">{icon}</span>}
-        <h4 className="text-2xl font-semibold uppercase">{title}</h4>
-      </header>
+    <article data-logo-card className="relative overflow-hidden rounded-xl bg-[#0B2BC4] p-5 text-white">
+      <LogoLayer className="bg-white/[0.07]" />
 
-      <div className={`mt-3 flex flex-1 gap-4 ${reverse ? "flex-row-reverse" : ""}`}>
-        <div className="flex flex-1 flex-col justify-between gap-4 px-2">
-          <p className="text-justify text-sm leading-snug">{description}</p>
+      <div className="relative flex h-full flex-col">
+        <header className="flex items-center gap-2">
+          {icon && <span className="h-7 w-7">{icon}</span>}
+          <h4 className="text-2xl font-semibold uppercase">{title}</h4>
+        </header>
+
+        <p className="mt-3 text-sm leading-snug">{description}</p>
+
+        {/* Print da conversa (ou espaço cinza enquanto não tiver imagem) */}
+        {image ? (
+          <img
+            src={image}
+            alt=""
+            className="mt-4 aspect-[4/3] w-full rounded-lg object-cover object-top"
+          />
+        ) : (
+          <div className="mt-4 aspect-[4/3] rounded-lg bg-white/90" />
+        )}
+
+        <div className="mt-auto pt-5">
           <Button href={href} variant="card" size="sm" className="w-full">
             Ver mais
           </Button>
         </div>
-
-        {/* Placeholder para print da conversa */}
-        <div className="w-1/2 rounded-lg bg-white/90" />
       </div>
     </article>
   );

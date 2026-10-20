@@ -1,5 +1,7 @@
 import Button from "../ui/Button";
 import Badge from "../ui/Badge";
+import notebook from "../../assets/services/crm-notebook.png";
+import phone from "../../assets/services/crm-phone.png";
 
 const features = [
   {
@@ -37,7 +39,10 @@ export default function CrmCard() {
         </div>
 
         {/* Placeholder para mockup (notebook + celular) */}
-        <div className="-mt-10 hidden h-40 w-64 rounded-lg bg-white/20 sm:block" />
+        <div className="relative">
+          <img src={notebook} alt="Notebook" className="hidden h-40 w-64 rounded-lg bg-white/20 sm:block" />
+          <img src={phone} alt="Celular" className="absolute left-0 top-0 hidden h-40 w-64 rounded-lg bg-white/20 sm:block" />
+        </div>
       </div>
 
       <ul className="mt-10 list-disc space-y-5 pl-8">

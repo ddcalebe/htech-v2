@@ -4,6 +4,9 @@
   --color-blue: #5AB0FF;
   --color-primary-gray: #6e6e6e;
   --color-secondary-gray: #f5f5f5;
+
+  --font-sans: "DM Sans Variable", system-ui, sans-serif;
+  --font-display: "Sora Variable", system-ui, sans-serif;
 }
 
 html {
