@@ -1,8 +1,9 @@
 export default function Badge({ children, variant = "blue" }) {
-  const styles =
-    variant === "blue"
-      ? "bg-white/15 text-white"
-      : "bg-neutral-400/40 text-neutral-600";
+  const styles = {
+    blue: "bg-white/15 text-white",
+    gray: "bg-neutral-400/40 text-neutral-600",
+    white: "bg-white text-[#0B2BC4]",
+  }[variant] ?? "bg-white/15 text-white";
 
   return (
     <span className={`inline-flex items-center gap-2 rounded px-2.5 py-1 text-md ${styles}`}>

@@ -1,70 +1,67 @@
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import SectionHeader from "../ui/SectionHeader";
 import CondoCard from "../cards/CondoCard";
-import nuvemBg from "../../assets/bg/nuvem-bg.svg";
+import useGridLogo from "../../hooks/useGridLogo";
 
+// Imagens dos cards: descomente e ajuste os caminhos quando tiver os arquivos
+// import acessoImg from "../../assets/services/condo-controle-acesso.webp";
+// import interfoniaImg from "../../assets/services/condo-interfonia.webp";
+// import smartBoxImg from "../../assets/services/condo-smart-box.webp";
+// import cftvImg from "../../assets/services/condo-cftv.webp";
+
+// TODO: revisar os textos (exemplos)
 const cards = [
-  { title: "App de\nGestão\nCondominial", size: "lg", badge: "Para condomínios" },
-  { title: "Controle\nde Acesso" },
-  { title: "Interfonia\nSem Fio" },
-  { title: "Smart\nBox" },
-  { title: "CFTV" },
+  {
+    title: "App de\nGestão",
+    size: "lg",
+    badge: "Para condomínios",
+    subtitle: "Toda a gestão do condomínio\nna palma da mão",
+    ctaLabel: "Solicitar demonstração grátis",
+    features: [
+      { title: "Comunicados e avisos:", text: "mensagens para todos os moradores ou por bloco, com confirmação de leitura." },
+      { title: "Reservas de áreas comuns:", text: "salão de festas, churrasqueira e quadra reservados pelo app." },
+      { title: "Portaria e visitantes:", text: "o morador autoriza a entrada de visitas direto pelo celular." },
+      { title: "Prestação de contas:", text: "boletos, balancetes e documentos sempre acessíveis." },
+    ],
+  },
+  {
+    title: "Controle\nde Acesso",
+    description: "Entrada de moradores e visitantes por reconhecimento facial, tag ou QR Code, com registro de cada acesso.",
+    href: "#controle-de-acesso",
+    // image: acessoImg,
+  },
+  {
+    title: "Interfonia\nSem Fio",
+    description: "O interfone toca no celular do morador, sem passar fiação nova pelo prédio.",
+    href: "#interfonia",
+    // image: interfoniaImg,
+  },
+  {
+    title: "Smart\nBox",
+    description: "Armário inteligente para encomendas: o entregador deposita e o morador retira com senha, a qualquer hora.",
+    href: "#smart-box",
+    // image: smartBoxImg,
+  },
+  {
+    title: "CFTV",
+    description: "Câmeras com gravação em nuvem e acesso pelo celular para o síndico e a portaria.",
+    href: "#cftv",
+    // image: cftvImg,
+  },
 ];
-
-// Tamanho do logo grande, em proporção da largura da grade (0 a 1).
-// A posição é calculada para ele ficar centralizado na grade, na horizontal e na vertical.
-const LOGO = {
-  width: 0.88,
-  aspect: 0.8,
-  offsetY: 0.00, // empurra o logo para baixo: 6% da altura da grade
-};
 
 export default function CondoSolutions() {
   const gridRef = useRef(null);
-
-  useLayoutEffect(() => {
-    const grid = gridRef.current;
-    if (!grid) return;
-
-    let aspect = LOGO.aspect;
-
-    const update = () => {
-      const logoW = grid.clientWidth * LOGO.width;
-      const logoH = logoW * aspect;
-      const logoX = (grid.clientWidth - logoW) / 2; // centro horizontal
-      const logoY = (grid.clientHeight - logoH) / 2 + grid.clientHeight * LOGO.offsetY;
-
-      grid.querySelectorAll("[data-logo-card]").forEach((card) => {
-        card.style.setProperty("--logo-w", `${logoW}px`);
-        card.style.setProperty("--logo-x", `${logoX - card.offsetLeft}px`);
-        card.style.setProperty("--logo-y", `${logoY - card.offsetTop}px`);
-      });
-    };
-
-    // Lê a proporção real do SVG para centralizar certinho
-    const img = new Image();
-    img.onload = () => {
-      if (img.naturalWidth && img.naturalHeight) {
-        aspect = img.naturalHeight / img.naturalWidth;
-        update();
-      }
-    };
-    img.src = nuvemBg;
-
-    const observer = new ResizeObserver(update);
-    observer.observe(grid);
-    update();
-
-    return () => observer.disconnect();
-  }, []);
+  useGridLogo(gridRef, { width: 0.88 });
 
   return (
     <section id="solucoes-condominiais" className="bg-neutral-900">
       <SectionHeader title="Soluções Condominiais" align="right" color="gray" />
 
       <div ref={gridRef} className="relative mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-2">
-        {cards.map((card) => (
-          <CondoCard key={card.title} {...card} />
+        {cards.map((card, i) => (
+          // Cards 2 e 4 (coluna da direita) ficam invertidos: imagem à esquerda, texto à direita
+          <CondoCard key={card.title} {...card} reverse={i > 0 && i % 2 === 0} />
         ))}
       </div>
     </section>

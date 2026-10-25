@@ -1,8 +1,10 @@
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/sections/Hero";
+import Intro from "./components/sections/Intro";
 import CorporateSolutions from "./components/sections/CorporateSolutions";
 import CondoSolutions from "./components/sections/CondoSolutions";
-import Intro from "./components/sections/Intro";
+import Clients from "./components/sections/Clients";
+import Footer from "./components/layout/Footer";
 
 export default function App() {
   return (
@@ -13,7 +15,9 @@ export default function App() {
         <Intro />
         <CorporateSolutions />
         <CondoSolutions />
+        <Clients />
       </main>
+      <Footer />
     </div>
   );
 }

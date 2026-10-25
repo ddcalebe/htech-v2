@@ -1,23 +1,51 @@
 import Button from "../ui/Button";
 import Badge from "../ui/Badge";
 import LogoLayer from "../ui/LogoLayer";
-import corpIcon from "../../assets/icons/corp-icon.png";
 
-/** Card largo de produto (CRM, PABX em nuvem...). */
-export default function ProductCard({ badge, title, subtitle, features = [], ctaLabel, ctaHref = "#", image, laptopImage, tabletImage, phoneImage, className = "" }) {
+// Cores de cada tema
+const themes = {
+  blue: {
+    card: "bg-[#0B2BC4] text-white",
+    logo: "bg-white/[0.07]",
+    badge: "blue",
+    button: "card",
+  },
+  gray: {
+    card: "bg-neutral-300 text-neutral-700",
+    logo: "bg-neutral-400/40",
+    badge: "gray",
+    button: "secondary",
+  },
+};
+
+/** Card largo de produto (CRM, PABX, App de Gestão...). */
+export default function ProductCard({
+  theme = "blue",
+  badge,
+  badgeIcon,
+  title,
+  subtitle,
+  features = [],
+  ctaLabel,
+  ctaHref = "#",
+  image,
+  laptopImage,
+  tabletImage,
+  phoneImage,
+  className = "",
+}) {
+  const t = themes[theme] ?? themes.blue;
+
   return (
-    <article
-      data-logo-card
-      className={`relative overflow-hidden rounded-xl bg-[#0B2BC4] p-6 text-white md:p-10 ${className}`}
-    >
-      <LogoLayer className="bg-white/[0.07]" />
+    <article data-logo-card className={`relative overflow-hidden rounded-xl p-6 md:p-10 ${t.card} ${className}`}>
+      <LogoLayer className={t.logo} />
 
       <div className="relative grid gap-8 lg:grid-cols-[1fr_1.3fr] lg:gap-12">
         <div className="flex flex-col">
           {badge && (
             <div>
-              <Badge>
-                <img src={corpIcon} alt="" className="h-8 w-8" />
+              <Badge variant={t.badge}>
+                {badgeIcon && <img src={badgeIcon} alt="" className="h-8 w-8" />}
                 {badge}
               </Badge>
             </div>
@@ -29,20 +57,14 @@ export default function ProductCard({ badge, title, subtitle, features = [], cta
 
           {/* Imagem única (ex.: PABX) */}
           {image && !laptopImage && (
-            <img
-              src={image}
-              alt=""
-              className="mt-8 hidden w-full max-w-md object-contain sm:block"
-            />
+            <img src={image} alt="" className="mt-8 hidden w-full max-w-md object-contain sm:block" />
           )}
 
           {/* Mockup em fileira: celular (frente) → tablet (meio) → notebook (atrás) */}
           {laptopImage && (
             <div className="relative mt-8 hidden w-full max-w-md pb-2 sm:block">
-              {/* Notebook: atrás, alinhado à direita */}
               <img src={laptopImage} alt="" className="relative z-0 ml-auto w-[78%] translate-x-[20%] object-contain" />
 
-              {/* Tablet: no meio, maior que o celular, sobrepondo a lateral do notebook */}
               {tabletImage && (
                 <img
                   src={tabletImage}
@@ -51,7 +73,6 @@ export default function ProductCard({ badge, title, subtitle, features = [], cta
                 />
               )}
 
-              {/* Celular: na frente, mais à esquerda */}
               {phoneImage && (
                 <img
                   src={phoneImage}
@@ -75,7 +96,7 @@ export default function ProductCard({ badge, title, subtitle, features = [], cta
 
           {ctaLabel && (
             <div className="mt-8 px-8">
-              <Button href={ctaHref} variant="card" size="md" className="w-full">
+              <Button href={ctaHref} variant={t.button} size="md" className="w-full">
                 {ctaLabel}
               </Button>
             </div>

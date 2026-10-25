@@ -78,7 +78,7 @@ export default function CorporateSolutions() {
         <h3 className="mt-2 text-3xl font-semibold text-white md:col-span-3">INCLUSO NO CRM:</h3>
 
         {included.map((item) => (
-          <FeatureCard key={item.title} {...item} />
+          <FeatureCard key={item.title} {...item} tag="CRM" />
         ))}
 
         <ProductCard {...pabx} className="mt-4 md:col-span-3" />

@@ -13,7 +13,7 @@ export default function Navbar() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         {/* Logo */}
         <a href="/" className="flex items-center gap-2">
-          <img src={logo} alt="Logo Htech" className="h-30 w-30" />
+          <img src={logo} alt="Logo Htech" className="w-30" />
         </a>
 
         {/* Links */}
