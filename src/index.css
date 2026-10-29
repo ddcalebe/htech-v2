@@ -24,6 +24,21 @@ html {
   scroll-padding-top: 100px;
 }
 
+/* Cursor personalizado: esconde o cursor do sistema quando o bonequinho (CustomCursor) está ativo */
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button,
+.has-custom-cursor [role="button"] {
+  cursor: none;
+}
+
+/* Campos de texto mantêm o cursor de digitação, para ficar claro onde escrever */
+.has-custom-cursor input,
+.has-custom-cursor textarea,
+.has-custom-cursor [contenteditable="true"] {
+  cursor: text;
+}
+
 /* Quem pediu "reduzir movimento" no sistema continua com o pulo direto */
 @media (prefers-reduced-motion: reduce) {
   html {

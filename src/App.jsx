@@ -5,10 +5,12 @@ import CorporateSolutions from "./components/sections/CorporateSolutions";
 import CondoSolutions from "./components/sections/CondoSolutions";
 import Clients from "./components/sections/Clients";
 import Footer from "./components/layout/Footer";
+import CustomCursor from "./components/ui/CustomCursor";
 
 export default function App() {
   return (
     <div className="min-h-screen bg-neutral-900 font-sans">
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />
