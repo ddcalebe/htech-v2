@@ -21,8 +21,9 @@ const columns = [
     title: "Para empresas",
     links: [
       { label: "CRM", href: "#solucoes-corporativas" },
-      { label: "Agente de IA", href: "#solucoes-corporativas" },
       { label: "Chatbot", href: "#solucoes-corporativas" },
+      { label: "Agente de IA", href: "#solucoes-corporativas" },
+      { label: "Integrações", href: "#solucoes-corporativas" },
       { label: "PABX em nuvem", href: "#solucoes-corporativas" },
     ],
   },
@@ -109,14 +110,14 @@ export default function Footer() {
 {/*             <li>{contact.address}</li>
  */}          </ul>
 
-          <a
+{/*           <a
             href={contact.whatsappLink}
             target="_blank"
             rel="noreferrer"
             className="mt-6 inline-flex items-center justify-center rounded-md bg-[#0A84FF] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#0070e0]"
           >
             Fale com um especialista
-          </a>
+          </a> */}
         </div>
       </div>
 

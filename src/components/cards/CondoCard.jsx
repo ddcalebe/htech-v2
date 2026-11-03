@@ -81,8 +81,8 @@ export default function CondoCard({
 
             {description && <p className="mt-3 text-sm leading-snug">{description}</p>}
 
-            <div className="mt-auto pt-6">
-              <Button href={href} variant="secondary" size="sm">
+            <div className="mt-auto w-full pt-6">
+              <Button href={href} variant="secondary" size="sm" className="w-full">
                 {ctaLabel}
               </Button>
             </div>
