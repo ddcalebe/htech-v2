@@ -3,6 +3,8 @@ import CircuitLines from "../ui/CircuitLines";
 import nuvem from "../../assets/logo/htech-nuvem.png";
 import cidade from "../../assets/bg/cidade.svg";
 
+
+const MAP_TOP_HOLE = 380;
 // Quanto o mapa desce além do Hero, nas laterais
 const MAP_EXTRA = 320;
 // Cor do mapa na parte que fica fora do Hero (sobre a seção escura)
@@ -22,18 +24,21 @@ export default function Hero() {
           background: `linear-gradient(to bottom, var(--color-primary-gray) calc(100% - ${MAP_EXTRA}px), ${MAP_EXTRA_COLOR} calc(100% - ${MAP_EXTRA}px))`,
           maskImage: [
             `url(${cidade})`,
-            // "buraco" oval embaixo, no centro: é ele que faz o mapa terminar na base do Hero
+            // oval de baixo: faz o mapa terminar na base do Hero
             `radial-gradient(ellipse 40% ${MAP_EXTRA + 140}px at 50% 100%, transparent 68%, #000 100%)`,
+            // oval de cima: clareira atrás do título
+            `radial-gradient(ellipse 40% ${MAP_TOP_HOLE}px at 50% 0, transparent 68%, #000 100%)`,
             // as laterais vão sumindo até o fim do mapa
-            `linear-gradient(to bottom, #000 calc(100% - ${MAP_EXTRA / 2}px), transparent 100%)`,
+            `linear-gradient(to bottom, #000 calc(100% - ${MAP_EXTRA}px), transparent 100%)`,
           ].join(", "),
           WebkitMaskImage: [
             `url(${cidade})`,
             `radial-gradient(ellipse 40% ${MAP_EXTRA + 140}px at 50% 100%, transparent 68%, #000 100%)`,
-            `linear-gradient(to bottom, #000 calc(100% - ${MAP_EXTRA / 2}px), transparent 100%)`,
+            `radial-gradient(ellipse 40% ${MAP_TOP_HOLE}px at 50% 0, transparent 68%, #000 100%)`,
+            `linear-gradient(to bottom, #000 calc(100% - ${MAP_EXTRA}px), transparent 100%)`,
           ].join(", "),
-          maskSize: "cover, 100% 100%, 100% 100%",
-          WebkitMaskSize: "cover, 100% 100%, 100% 100%",
+          maskSize: "cover, 100% 100%, 100% 100%, 100% 100%",
+          WebkitMaskSize: "cover, 100% 100%, 100% 100%, 100% 100%",
           maskPosition: "top center",
           WebkitMaskPosition: "top center",
           maskRepeat: "no-repeat",
@@ -43,7 +48,7 @@ export default function Hero() {
         }}
       />
 
-      <h1 className="relative z-10 mb-14 text-center text-4xl font-semibold text-primary-gray md:text-6xl">
+      <h1 className="relative z-10 mb-20 -mt-10 text-center text-4xl font-semibold text-primary-gray md:text-6xl">
         Comunicação moderna <br /> e eficiente
       </h1>
 

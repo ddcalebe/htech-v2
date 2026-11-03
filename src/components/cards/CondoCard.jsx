@@ -15,7 +15,7 @@ export default function CondoCard({
   subtitle,
   description,
   features = [],
-  ctaLabel = "Ver mais",
+  ctaLabel = "Quero essa solução",
   href = "#",
   image,
   reverse = false,
