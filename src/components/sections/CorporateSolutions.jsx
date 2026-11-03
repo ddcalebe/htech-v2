@@ -1,15 +1,13 @@
 import { useRef } from "react";
 import SectionHeader from "../ui/SectionHeader";
 import ProductCard from "../cards/ProductCard";
-import FeatureCard from "../cards/FeatureCard";
 import CardConnector from "../ui/CardConnector";
 import IntegrationsHub from "../ui/IntegrationsHub";
+import ChatShowcase from "../ui/ChatShowcase";
 import useGridLogo from "../../hooks/useGridLogo";
 import laptop from "../../assets/services/crm-laptop.png";
 import tablet from "../../assets/services/crm-tablet.png";
 import phone from "../../assets/services/crm-phone.png";
-import aiAgent from "../../assets/services/crm-ai-agent.png";
-import chatbot from "../../assets/services/crm-chatbot.png";
 import pabxImage from "../../assets/services/pabx.png";
 
 const crm = {
@@ -29,19 +27,36 @@ const crm = {
   tabletImage: tablet,
 };
 
+// Chatbot (esquerda) e Agente de IA (direita), mostrados como conversas de exemplo.
+// As conversas são só ilustração: pode trocar os textos à vontade.
 const included = [
   {
     title: "Chatbot",
-    description: "Responde dúvidas programadas, transfere atendimentos e mantém o contato com seus clientes, mesmo fora do horário comercial.",
+    icon: "chat",
+    description: "Responde dúvidas programadas, transfere atendimentos e mantém o contato mesmo fora do horário comercial.",
     href: "#chatbot",
-    image: chatbot,
+    messages: [
+      { from: "user", text: "Oi, preciso da segunda via do boleto" },
+      { from: "bot", text: "Olá! Escolha uma opção:", options: ["Segunda via de boleto", "Falar com um atendente"] },
+      { from: "user", text: "1" },
+      { typing: true },
+    ],
   },
   {
     title: "Agente de IA",
-    description: "Vai além do chatbot de menu. Entende perguntas, áudios, arquivos e responde de forma natural e encaminha para um humano quando necessário.",
+    icon: "spark",
+    description: "Entende perguntas, áudios e arquivos, responde de forma natural e encaminha para um humano quando necessário.",
     href: "#agente-ia",
-    image: aiAgent,
-    reverse: true,
+    messages: [
+      { from: "user", audio: "0:12" },
+      {
+        from: "bot",
+        ai: true,
+        text: "Claro! Seu boleto de novembro vence dia 10. Já te enviei a segunda via aqui. Quer que eu agende um lembrete?",
+      },
+      { from: "user", text: "Pode sim, obrigado!" },
+      { typing: true },
+    ],
   },
 ];
 
@@ -84,14 +99,12 @@ export default function CorporateSolutions() {
 
         <h3 className="mt-2 text-3xl font-semibold text-white">INCLUSO NO CRM:</h3>
 
-        {/* Inclusos: Agente e Chatbot em cima, ligados pelas linhas ao hub de Integrações embaixo.
+        {/* Inclusos: Chatbot e Agente de IA em cima, ligados pelas linhas ao hub de Integrações embaixo.
             Sem "relative" aqui, para o logo de fundo continuar alinhado com o CRM e o PABX. */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-rows-[auto_56px_auto] lg:gap-y-0">
-          {included.map((item) => (
-            <FeatureCard key={item.title} {...item} tag="CRM" />
-          ))}
+          <ChatShowcase className="md:col-span-2 lg:pb-6" items={included} />
 
-          {/* Linhas ligando os dois cards ao hub (só no desktop) */}
+          {/* Linhas ligando as duas conversas ao hub (só no desktop) */}
           <CardConnector className="hidden lg:col-span-2 lg:row-start-2 lg:block" />
 
           <IntegrationsHub

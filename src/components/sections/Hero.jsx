@@ -4,7 +4,7 @@ import nuvem from "../../assets/logo/htech-nuvem.png";
 import cidade from "../../assets/bg/cidade.svg";
 
 
-const MAP_TOP_HOLE = 380;
+const MAP_TOP_HOLE = 270;
 // Quanto o mapa desce além do Hero, nas laterais
 const MAP_EXTRA = 320;
 // Cor do mapa na parte que fica fora do Hero (sobre a seção escura)
