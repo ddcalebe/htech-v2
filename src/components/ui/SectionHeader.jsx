@@ -5,8 +5,8 @@ const colors = {
     bar: "bg-[#0A84FF] shadow-[0_0_16px_#0A84FF]",
   },
   gray: {
-    glow: "bg-secondary-gray",
-    bar: "bg-secondary-gray shadow-[0_0_16px_var(--color-secondary-gray)]",
+    glow: "bg-condo",
+    bar: "bg-condo shadow-[0_0_16px_var(--color-condo)]",
   },
 };
 

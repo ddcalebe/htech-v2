@@ -5,7 +5,7 @@ import LogoLayer from "../ui/LogoLayer";
 // Cores de cada tema
 const themes = {
   blue: {
-    card: "bg-[#0B2BC4] text-white",
+    card: "bg-[#153DCD] text-white",
     logo: "bg-white/[0.07]",
     badge: "blue",
     button: "card",

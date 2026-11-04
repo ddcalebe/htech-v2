@@ -17,7 +17,7 @@ export default function Hero() {
           No centro o mapa termina na base do Hero; nas laterais ele continua para baixo e vai sumindo. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-[1] opacity-40"
+        className="pointer-events-none absolute inset-x-0 top-0 z-[1] opacity-30"
         style={{
           height: `calc(100% + ${MAP_EXTRA}px)`,
           // cor do mapa: primary-gray dentro do Hero, mais claro na parte que desce sobre a seção escura
@@ -48,9 +48,9 @@ export default function Hero() {
         }}
       />
 
-      <h1 className="relative z-10 mb-20 -mt-10 text-center text-4xl font-semibold text-primary-gray md:text-6xl">
-        Comunicação moderna <br /> e eficiente
-      </h1>
+<h1 className="relative z-10 mx-auto mb-20 -mt-10 w-fit bg-[linear-gradient(135deg,#0B2BC4,#5AB0FF)] bg-clip-text pb-2 text-center text-4xl font-semibold text-transparent md:text-6xl">
+  Comunicação moderna <br /> e eficiente
+</h1>
 
       {/* Círculo da nuvem + linhas de circuito */}
       <div className="relative z-10 mb-16 flex items-center justify-center">
@@ -69,7 +69,7 @@ export default function Hero() {
             className="pointer-events-none absolute inset-0 rounded-full p-1"
             style={{
               background:
-                "conic-gradient(from -20deg, var(--color-blue), #4b5563 40deg 180deg, var(--color-blue) 220deg 360deg)",
+                "conic-gradient(from -20deg, var(--color-corp), var(--color-condo) 40deg 180deg, var(--color-corp) 220deg 360deg)",
               WebkitMask:
                 "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
               WebkitMaskComposite: "xor",
@@ -81,12 +81,17 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 flex flex-col gap-6 sm:flex-row sm:gap-14">
-        <Button href="#solucoes-corporativas" size="lg" className="min-w-[230px]">
+        <Button
+          href="#solucoes-corporativas"
+          variant="corp"
+          size="lg"
+          className="min-w-[230px]"
+        >
           Empresas
         </Button>
         <Button
           href="#solucoes-condominiais"
-          variant="secondary"
+          variant="condoLight"
           size="lg"
           className="min-w-[230px]"
         >

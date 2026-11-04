@@ -13,7 +13,7 @@ import pabxImage from "../../assets/services/pabx.png";
 
 const crm = {
   badge: "Para empresas",
-  title: "CRM",
+  title: "CENTRAL DE CONVERSAS",
   subtitle: "Atendimento multicanal WEB e Mobile",
   ctaLabel: "Solicitar demonstração grátis",
   features: [
@@ -99,7 +99,7 @@ export default function CorporateSolutions() {
       <div ref={gridRef} className="relative mx-auto grid max-w-7xl gap-6 px-6 py-10">
         <ProductCard {...crm} />
 
-        <h3 className="mt-2 text-3xl font-semibold text-white">INCLUSO NO CRM:</h3>
+        <h3 className="mt-2 text-3xl font-semibold text-white">OTIMIZE SUA EXPERIÊNCIA DE ATENDIMENTO:</h3>
 
         {/* Inclusos: Chatbot e Agente de IA em cima, ligados pelas linhas ao hub de Integrações embaixo.
             Sem "relative" aqui, para o logo de fundo continuar alinhado com o CRM e o PABX. */}

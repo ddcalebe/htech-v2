@@ -4,6 +4,9 @@
   --color-blue: #5AB0FF;
   --color-primary-gray: #6e6e6e;
   --color-secondary-gray: #f5f5f5;
+  --color-corp: #153DCD;   /* azul escuro: empresas */
+  --color-condo: #A8D4FF;  /* azul claro: condomínios */
+  --color-navy: #0B1F5E;   /* texto em cima do azul claro */
 
   --font-sans: "DM Sans Variable", system-ui, sans-serif;
   --font-display: "Sora Variable", system-ui, sans-serif;

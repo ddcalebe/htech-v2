@@ -47,7 +47,7 @@ export default function Footer() {
       {/* Linha de luz no topo */}
       <span
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent"
+        className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent"
       />
 
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">

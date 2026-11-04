@@ -25,11 +25,11 @@ export default function CondoCard({
   return (
     <article
       data-logo-card
-      className={`relative overflow-hidden rounded-xl bg-neutral-300 p-5 text-neutral-700 md:p-8 ${
+      className={`relative overflow-hidden rounded-xl bg-condo p-5 text-navy md:p-8 ${
         isLarge ? "min-h-[420px] md:col-span-2" : "min-h-[280px]"
       }`}
     >
-      <LogoLayer className="bg-neutral-400/40" />
+      <LogoLayer className="bg-corp/15" />
 
       {badge && (
         <div className="absolute right-3 top-3 z-10">
@@ -44,7 +44,7 @@ export default function CondoCard({
         /* Card grande: título à esquerda, recursos e botão à direita */
         <div className="relative grid h-full gap-8 lg:grid-cols-[1fr_1.3fr] lg:gap-12">
           <div>
-            <h3 className="whitespace-pre-line text-4xl font-semibold uppercase leading-tight text-neutral-600 md:text-5xl">
+            <h3 className="whitespace-pre-line text-4xl font-semibold uppercase leading-tight text-navy/80 md:text-5xl">
               {title}
             </h3>
             {subtitle && (
@@ -63,7 +63,7 @@ export default function CondoCard({
 
             {ctaLabel && (
               <div className="mt-8 px-8">
-                <Button href={href} variant="secondary" size="md" className="w-full">
+                <Button href={href} variant="condo" size="md" className="w-full">
                   {ctaLabel}
                 </Button>
               </div>
@@ -75,14 +75,14 @@ export default function CondoCard({
         <div className="relative grid h-full gap-4 sm:grid-cols-2">
           {/* Texto */}
           <div className={`flex flex-col ${reverse ? "sm:order-2 sm:items-end sm:text-right" : ""}`}>
-            <h3 className="whitespace-pre-line text-2xl font-semibold uppercase leading-tight text-neutral-600">
+            <h3 className="whitespace-pre-line text-2xl font-semibold uppercase leading-tight text-navy/80">
               {title}
             </h3>
 
             {description && <p className="mt-3 text-sm leading-snug">{description}</p>}
 
             <div className="mt-auto w-full pt-6">
-              <Button href={href} variant="secondary" size="sm" className="w-full">
+              <Button href={href} variant="condo" size="sm" className="w-full">
                 {ctaLabel}
               </Button>
             </div>

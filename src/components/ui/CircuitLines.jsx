@@ -16,6 +16,9 @@
  *     }}
  *   />
  * Cada lista vai de cima para baixo. Pode passar <img>, SVG ou componente de ícone.
+ *
+ * Os ícones padrão usam <MaskIcon>: o PNG vira uma "máscara" e é pintado com uma cor só
+ * (iconColor), sem precisar editar as imagens.
  */
 
 import chatbot from "../../assets/icons/chatbot-icon.png";
@@ -28,6 +31,41 @@ import intercom from "../../assets/icons/intercom-icon.png";
 import acessControl from "../../assets/icons/acess-control-icon.png";
 import integration from "../../assets/icons/integration-icon.png";
 import ai from "../../assets/icons/ai-icon.png";
+
+// ===== Cores para testar (deixe só um bloco ativo) =====
+
+// Opção 3: ícone com degradê do azul escuro ao azul claro, círculo com o fundo de antes
+const ICON_COLOR = "linear-gradient(135deg, #0B2BC4, #5AB0FF)";
+const SLOT_FILL = "#f2f2f2";
+
+// Opção 4: círculo preenchido de azul bem clarinho, ícone azul escuro
+// const ICON_COLOR = "#0B2BC4";
+// const SLOT_FILL = "#DCEBFF";
+
+/**
+ * Pinta um ícone PNG (com fundo transparente) com uma cor só.
+ * A imagem vira máscara e o fundo do span (a cor) aparece no formato do ícone.
+ */
+function MaskIcon({ src, color = ICON_COLOR }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="block"
+      style={{
+        // "background" (e não backgroundColor) para aceitar cor sólida ou degradê
+        background: color,
+        WebkitMaskImage: `url(${src})`,
+        maskImage: `url(${src})`,
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+      }}
+    />
+  );
+}
 
 const WIDTH = 1600;
 const HEIGHT = 600;
@@ -123,23 +161,34 @@ function Side({ mirrored = false, icons = [], color }) {
 /**
  * Cores de cada lado (linhas, pulsos, nós e círculos dos ícones):
  *  - leftColor:  se não passar, usa a cor do texto do componente (ex.: text-blue)
- *  - rightColor: padrão cinza #4b5563
+ *  - rightColor: lado direito
+ *  - iconColor:  cor (ou degradê) de todos os ícones (padrão ICON_COLOR)
+ *  - slotFill:   fundo dos círculos dos ícones (padrão SLOT_FILL)
  */
-export default function CircuitLines({ className = "", icons = {}, leftColor, rightColor = "#4b5563" }) {
-  const { left = [
-            <img src={chatbot} alt="" />,
-            <img src={crm} alt="" />,
-            <img src={whatsapp} alt="" />,
-            <img src={integration} alt="" />,
-            <img src={ai} alt="" />,
-
-  ], right = [
-            <img src={box} alt="" />,
-            <img src={phone} alt="" />,
-            <img src={cftv} alt="" />,
-            <img src={intercom} alt="" />,
-            <img src={acessControl} alt="" />,
-  ] } = icons;
+export default function CircuitLines({
+  className = "",
+  icons = {},
+  leftColor = "#0A84FF",
+  rightColor = "#0A84FF",
+  iconColor = ICON_COLOR,
+  slotFill = SLOT_FILL,
+}) {
+  const {
+    left = [
+      <MaskIcon src={chatbot} color={iconColor} />,
+      <MaskIcon src={crm} color={iconColor} />,
+      <MaskIcon src={whatsapp} color={iconColor} />,
+      <MaskIcon src={integration} color={iconColor} />,
+      <MaskIcon src={ai} color={iconColor} />,
+    ],
+    right = [
+      <MaskIcon src={box} color={iconColor} />,
+      <MaskIcon src={phone} color={iconColor} />,
+      <MaskIcon src={cftv} color={iconColor} />,
+      <MaskIcon src={intercom} color={iconColor} />,
+      <MaskIcon src={acessControl} color={iconColor} />,
+    ],
+  } = icons;
 
   return (
     <svg
@@ -176,7 +225,7 @@ export default function CircuitLines({ className = "", icons = {}, leftColor, ri
           animation: circuit-pulse 4s linear infinite;
         }
         .circuit-slot {
-          fill: #f2f2f2;
+          fill: ${slotFill};
           animation: circuit-slot 4s ease-out infinite;
         }
         @keyframes circuit-draw {

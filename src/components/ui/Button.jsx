@@ -2,6 +2,9 @@ const variants = {
   primary: "bg-[#0A84FF] text-white hover:bg-[#0070e0]",
   secondary: "bg-neutral-600/80 text-white hover:bg-neutral-600",
   card: "bg-[#3b5bdb] text-white hover:bg-[#4c6ef5]",
+  corp: "bg-corp text-white hover:bg-[#1a3ae0]",
+  condo: "bg-navy text-white hover:bg-corp",
+  condoLight: "bg-condo text-navy hover:bg-[#7cc0ff]",
 };
 
 const sizes = {
