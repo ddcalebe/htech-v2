@@ -47,6 +47,16 @@ const icons = {
     </>
   ),
   api: <path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 6l-3 12" />,
+  form: (
+    <>
+      <rect x="5" y="3" width="14" height="18" rx="2" />
+      <path d="M9 3v2h6V3" />
+      <rect x="8" y="9" width="2.5" height="2.5" rx=".5" />
+      <path d="M13 10.25h3" />
+      <rect x="8" y="14.5" width="2.5" height="2.5" rx=".5" />
+      <path d="M13 15.75h3" />
+    </>
+  ),
 };
 
 function Icon({ name, className = "" }) {

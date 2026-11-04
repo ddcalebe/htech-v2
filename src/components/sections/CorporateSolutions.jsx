@@ -4,6 +4,7 @@ import ProductCard from "../cards/ProductCard";
 import CardConnector from "../ui/CardConnector";
 import IntegrationsHub from "../ui/IntegrationsHub";
 import ChatShowcase from "../ui/ChatShowcase";
+import haia from "../../assets/haia.webp";
 import useGridLogo from "../../hooks/useGridLogo";
 import laptop from "../../assets/services/crm-laptop.png";
 import tablet from "../../assets/services/crm-tablet.png";
@@ -27,35 +28,36 @@ const crm = {
   tabletImage: tablet,
 };
 
-// Chatbot (esquerda) e Agente de IA (direita), mostrados como conversas de exemplo.
-// As conversas são só ilustração: pode trocar os textos à vontade.
+// Chatbot (esquerda, com o robô) e Agente de IA (direita, com o bonequinho do cursor).
+// Cada um tem até 3 mensagens flutuando ao lado. Os textos são só ilustração.
 const included = [
   {
     title: "Chatbot",
+    character: "robot",
     icon: "chat",
     description: "Responde dúvidas programadas, transfere atendimentos e mantém o contato mesmo fora do horário comercial.",
-    href: "#chatbot",
-    messages: [
-      { from: "user", text: "Oi, preciso da segunda via do boleto" },
-      { from: "bot", text: "Olá! Escolha uma opção:", options: ["Segunda via de boleto", "Falar com um atendente"] },
-      { from: "user", text: "1" },
-      { typing: true },
+    bubbles: [
+      { from: "user", text: "Oi, bom dia!" },
+      {
+        from: "bot",
+        text: "Olá! Seja bem-vindo à Htech!\nComo gostaria de prosseguir?",
+        options: ["Conhecer soluções", "Conhecer produtos", "Outros assuntos"],
+      },
+      { from: "user", quote: "Como gostaria de prosseguir?", text: "Conhecer soluções" },
     ],
   },
   {
     title: "Agente de IA",
+    character: haia,
     icon: "spark",
     description: "Entende perguntas, áudios e arquivos, responde de forma natural e encaminha para um humano quando necessário.",
-    href: "#agente-ia",
-    messages: [
+    bubbles: [
       { from: "user", audio: "0:12" },
       {
         from: "bot",
-        ai: true,
-        text: "Claro! Seu boleto de novembro vence dia 10. Já te enviei a segunda via aqui. Quer que eu agende um lembrete?",
+        text: "Entendi! Você quer automatizar o atendimento da sua empresa no WhatsApp. Posso te mostrar como o nosso CRM faz isso e já agendar uma demonstração gratuita. Qual o melhor dia pra você?",
       },
-      { from: "user", text: "Pode sim, obrigado!" },
-      { typing: true },
+      { from: "user", text: "Pode ser quinta à tarde!" },
     ],
   },
 ];
@@ -66,8 +68,8 @@ const included = [
 const integrations = [
   { label: "ERP", icon: "database" },
   { label: "Planilhas", icon: "sheet" },
-  { label: "E-mail", icon: "mail" },
-  { label: "Site", icon: "web" },
+  { label: "Formulários", icon: "form" },
+  { label: "APIs", icon: "api" },
 ];
 
 // TODO: revisar os textos do PABX (exemplo)
@@ -101,7 +103,7 @@ export default function CorporateSolutions() {
 
         {/* Inclusos: Chatbot e Agente de IA em cima, ligados pelas linhas ao hub de Integrações embaixo.
             Sem "relative" aqui, para o logo de fundo continuar alinhado com o CRM e o PABX. */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-rows-[auto_56px_auto] lg:gap-y-0">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-rows-[auto_150px_auto] lg:gap-y-0">
           <ChatShowcase className="md:col-span-2 lg:pb-6" items={included} />
 
           {/* Linhas ligando as duas conversas ao hub (só no desktop) */}
