@@ -66,29 +66,22 @@ export default function Faq() {
       id="faq"
       className="text-[#0B1F5E]"
       style={{
-        // Transição suave: do preto da seção anterior ao azul-claro em 380px,
-        // começando e terminando devagar, com as cores misturadas em oklch (sem o meio acinzentado)
-        background:
-          "linear-gradient(to bottom in oklch, #171717 0, " +
-          "color-mix(in oklch, #171717 92%, #5AB0FF) 60px, " +
-          "color-mix(in oklch, #171717 75%, #5AB0FF) 130px, " +
-          "color-mix(in oklch, #171717 50%, #5AB0FF) 200px, " +
-          "color-mix(in oklch, #171717 25%, #5AB0FF) 270px, " +
-          "color-mix(in oklch, #171717 8%, #5AB0FF) 330px, " +
-          "#5AB0FF 380px, #5AB0FF 100%)",
+        // Transição suave do preto da seção anterior para o branco (paradas em curva, sem "faixa" no meio)
+      background:
+        "linear-gradient(to bottom in oklch, #171717 0, color-mix(in oklch, #171717 92%, #f5f5f5) 60px, color-mix(in oklch, #171717 75%, #f5f5f5) 130px, color-mix(in oklch, #171717 50%, #f5f5f5) 200px, color-mix(in oklch, #171717 25%, #f5f5f5) 270px, color-mix(in oklch, #171717 8%, #f5f5f5) 330px, #f5f5f5 380px, #f5f5f5 100%)",
       }}
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-20 pt-80 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
         {/* Esquerda: título e chamada */}
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#0B2BC4]">FAQ</span>
+          <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#0A84FF]">FAQ</span>
           <h2 className="mt-3 text-4xl font-semibold leading-tight md:text-5xl">Perguntas frequentes</h2>
           <p className="mt-4 max-w-sm text-[#0B1F5E]/80">
             Não encontrou o que procurava? Fale com a nossa equipe e tire suas dúvidas direto com um especialista.
           </p>
           <a
             href="#contato"
-            className="mt-6 inline-flex items-center justify-center rounded-md bg-[#0B2BC4] px-6 py-2.5 font-semibold text-white transition hover:bg-[#0B1F5E]"
+            className="mt-6 inline-flex items-center justify-center rounded-md bg-[#0A84FF] px-6 py-2.5 font-semibold text-white transition hover:bg-[#0B1F5E]"
           >
             Fale com a gente
           </a>
@@ -99,14 +92,13 @@ export default function Faq() {
           {faqs.map((item) => (
             <details
               key={item.question}
-              className="group rounded-xl border border-white/50 bg-white/40 shadow-sm shadow-[#0B1F5E]/5 transition-colors open:bg-white/70"
-            >
+              className="group rounded-xl border border-[#0B1F5E]/10 bg-white transition-colors hover:border-[#0A84FF]/30 open:border-[#0A84FF]/25 open:shadow-lg open:shadow-[#0B1F5E]/10"            >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
                 <span className="flex flex-col gap-1">
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0B2BC4]">{item.type}</span>
+                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0A84FF]">{item.type}</span>
                   <span className="text-lg font-semibold leading-snug">{item.question}</span>
                 </span>
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#0B2BC4] text-white">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#0A84FF] text-white">
                   <PlusIcon />
                 </span>
               </summary>
