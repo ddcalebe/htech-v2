@@ -177,7 +177,7 @@ function Bubble({ from, text, audio, options, quote, icon, index, flip }) {
         className={`rounded-2xl px-4 py-3 text-sm leading-snug text-white ${
           isUser
             ? "border border-white/15 bg-white/[0.08] backdrop-blur-sm"
-            : "bg-[#0B2BC4] shadow-[0_0_30px_rgba(11,43,196,0.55)]"
+            : "bg-[#0B1F5E] shadow-[0_10px_28px_rgba(4,12,50,0.45)]"
         } ${iconRight ? "rounded-tr-md" : "rounded-tl-md"}`}
       >
         {/* Mensagem respondida (citação, como no WhatsApp) */}
@@ -225,7 +225,7 @@ function Bubble({ from, text, audio, options, quote, icon, index, flip }) {
 
       {/* Ícone redondo no canto (pessoa para o cliente, ícone do item para a resposta) */}
       <span
-        className={`absolute -top-3 grid h-8 w-8 place-items-center rounded-full border-2 border-[#171717] ${
+        className={`absolute -top-3 grid h-8 w-8 place-items-center rounded-full border-2 border-corp ${
           isUser ? "bg-white text-[#0B2BC4]" : "bg-[#5AB0FF] text-[#0B1F5E]"
         } ${iconRight ? "-right-3" : "-left-3"}`}
       >
