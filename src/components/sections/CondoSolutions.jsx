@@ -10,6 +10,10 @@ import useGridLogo from "../../hooks/useGridLogo";
 // import cftvImg from "../../assets/services/condo-cftv.webp";
 
 // TODO: revisar os textos (exemplos)
+// Ordem = posição na grade em "escada":
+//   1ª fileira: App de Gestão (largura toda)
+//   2ª fileira: Smart Box (largo) + Interfonia (estreito)
+//   3ª fileira: Controle de Acesso (estreito) + CFTV (largo)
 const cards = [
   {
     title: "App de\nGestão",
@@ -25,10 +29,10 @@ const cards = [
     ],
   },
   {
-    title: "Controle\nde Acesso",
-    description: "Entrada de moradores e visitantes por reconhecimento facial, tag ou QR Code, com registro de cada acesso.",
-    href: "#controle-de-acesso",
-    // image: acessoImg,
+    title: "Smart\nBox",
+    description: "Armário inteligente para encomendas: o entregador deposita e o morador retira com senha, a qualquer hora.",
+    href: "#smart-box",
+    // image: smartBoxImg,
   },
   {
     title: "Interfonia\nSem Fio",
@@ -37,10 +41,10 @@ const cards = [
     // image: interfoniaImg,
   },
   {
-    title: "Smart\nBox",
-    description: "Armário inteligente para encomendas: o entregador deposita e o morador retira com senha, a qualquer hora.",
-    href: "#smart-box",
-    // image: smartBoxImg,
+    title: "Controle\nde Acesso",
+    description: "Entrada de moradores e visitantes por reconhecimento facial, tag ou QR Code, com registro de cada acesso.",
+    href: "#controle-de-acesso",
+    // image: acessoImg,
   },
   {
     title: "CFTV",
@@ -50,18 +54,22 @@ const cards = [
   },
 ];
 
+// Largura de cada card na grade de 5 colunas (mesma ordem do array `cards`)
+const spans = ["md:col-span-5", "md:col-span-3", "md:col-span-2", "md:col-span-2", "md:col-span-3"];
+
 export default function CondoSolutions() {
   const gridRef = useRef(null);
   useGridLogo(gridRef, { width: 0.88 });
 
   return (
-    <section id="solucoes-condominiais" className="bg-neutral-900">
-      <SectionHeader title="Soluções Condominiais" align="right" color="gray" />
+    <section id="solucoes-condominiais" className="bg-condo">
+      <SectionHeader title="Soluções Condominiais" align="right" color="navy" />
 
-      <div ref={gridRef} className="relative mx-auto grid max-w-7xl gap-10 px-6 py-10 md:grid-cols-2">
+      {/* Grade de 5 colunas: as fileiras alternam largo (3) + estreito (2) e estreito (2) + largo (3) */}
+      <div ref={gridRef} className="relative mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-5">
         {cards.map((card, i) => (
-          // Cards 2 e 4 (coluna da direita) ficam invertidos: imagem à esquerda, texto à direita
-          <CondoCard key={card.title} {...card} reverse={i > 0 && i % 2 === 0} />
+          // Cards da direita de cada fileira (Interfonia e CFTV) ficam invertidos: imagem à esquerda, texto à direita
+          <CondoCard key={card.title} {...card} reverse={i > 0 && i % 2 === 0} className={spans[i]} />
         ))}
       </div>
     </section>

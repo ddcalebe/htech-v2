@@ -3,8 +3,8 @@ import htechCloud from "../../assets/logo/htech-nuvem.png";
 /**
  * Card de produto (Central de Conversas, PABX...) da seção de Empresas.
  *
- * Card escuro (marinho → quase preto) para ficar em cima da seção azul de Empresas,
- * com uma grade suave e a nuvem da HTech grande ao fundo (marca d'água).
+ * Card branco em cima da seção azul de Empresas, com uma grade suave e a nuvem da HTech
+ * grande ao fundo (marca d'água).
  * Esquerda: badge, título (com degradê), subtítulo e a imagem do produto com um brilho azul atrás.
  * Direita: as características em blocos arredondados com o ícone num círculo branco, e o botão no final.
  *
@@ -84,16 +84,14 @@ export default function ProductCard({
 
   return (
     <article
-      className={`relative isolate grid items-center gap-10 overflow-hidden rounded-3xl p-6 text-white shadow-[0_30px_60px_rgba(4,12,50,0.5),inset_0_1px_0_rgba(255,255,255,0.12)] md:p-10 lg:grid-cols-[1.2fr_1fr] lg:gap-12 ${className}`}
-      style={{ background: "linear-gradient(135deg, #0B1F5E 0%, #0a1846 50%, #071433 100%)" }}
-    >
+      className={`relative isolate grid items-center gap-10 overflow-hidden rounded-3xl bg-white p-6 text-navy shadow-[0_24px_50px_rgba(4,12,50,0.25)] md:p-10 lg:grid-cols-[1.2fr_1fr] lg:gap-12 ${className}`}    >
       {/* Grade suave, mais forte perto do título e sumindo nas bordas */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.08]"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.06]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
+            "linear-gradient(to right, #0B1F5E 1px, transparent 1px), linear-gradient(to bottom, #0B1F5E 1px, transparent 1px)",
           backgroundSize: "36px 36px",
           WebkitMaskImage: "radial-gradient(80% 80% at 30% 40%, #000, transparent)",
           maskImage: "radial-gradient(80% 80% at 30% 40%, #000, transparent)",
@@ -105,26 +103,26 @@ export default function ProductCard({
         src={htechCloud}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[18%] -right-[8%] -z-10 w-[52%] opacity-[0.06] brightness-0 invert"
+        className="pointer-events-none absolute -bottom-[18%] -right-[8%] -z-10 w-[52%] opacity-[0.15]"
       />
 
       {/* Esquerda: badge, título, subtítulo e imagem */}
       <div className="relative flex min-w-0 flex-col">
         {badge && (
-          <span className="self-start rounded bg-white px-2 py-0.5 text-xs font-semibold text-corp">{badge}</span>
+          <span className="self-start rounded bg-corp px-2 py-0.5 text-xs font-semibold text-white">{badge}</span>
         )}
         <h3 className="mt-2 font-display text-4xl font-semibold uppercase leading-[1.05] md:text-5xl">
-          <span className="bg-[linear-gradient(135deg,#ffffff_10%,#5AB0FF)] bg-clip-text pb-1 text-transparent">
+          <span className="bg-[linear-gradient(135deg,var(--color-corp),#5AB0FF)] bg-clip-text pb-1 text-transparent">
             {title}
           </span>
         </h3>
-        {subtitle && <p className="mt-2 text-lg text-white/80">{subtitle}</p>}
+        {subtitle && <p className="mt-2 text-lg text-navy/75">{subtitle}</p>}
 
         {/* Imagem com brilho atrás e sombra embaixo, para parecer flutuando */}
         <div className="relative mt-8">
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute left-1/2 top-1/2 aspect-[1.6] w-[110%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(10,132,255,0.55),rgba(21,61,205,0.2)_55%,transparent)]"
+            className="pointer-events-none absolute left-1/2 top-1/2 aspect-[1.6] w-[110%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(90,176,255,0.45),transparent)]"
           />
 
           {hasMockup ? (
@@ -163,7 +161,7 @@ export default function ProductCard({
 
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -bottom-3 left-[15%] right-[15%] h-5 rounded-full bg-[radial-gradient(closest-side,rgba(0,0,0,0.5),transparent)]"
+            className="pointer-events-none absolute -bottom-3 left-[15%] right-[15%] h-5 rounded-full bg-[radial-gradient(closest-side,rgba(11,31,94,0.35),transparent)]"
           />
         </div>
       </div>
@@ -175,14 +173,14 @@ export default function ProductCard({
             {features.map((f, i) => (
               <li
                 key={f.title}
-                className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.07] py-2.5 pl-2.5 pr-4 leading-snug"
+                className="flex items-center gap-3 rounded-2xl border border-[#e1e9fb] bg-[#f1f5ff] py-2.5 pl-2.5 pr-4 leading-snug"
               >
-                <span className="grid h-[38px] w-[38px] shrink-0 place-items-center rounded-full bg-white text-corp">
+                <span className="grid h-[38px] w-[38px] shrink-0 place-items-center rounded-full bg-corp text-white">
                   <Icon name={f.icon ?? defaultIcons[i % defaultIcons.length]} />
                 </span>
                 <span>
                   <b className="font-bold">{f.title}</b>
-                  {f.text && <span className="text-white/85"> {f.text}</span>}
+                  {f.text && <span className="text-navy/80"> {f.text}</span>}
                 </span>
               </li>
             ))}
@@ -192,7 +190,7 @@ export default function ProductCard({
         {ctaLabel && (
           <a
             href={ctaHref}
-            className="mt-6 block rounded-xl bg-[#0A84FF] px-6 py-3 text-center text-lg font-semibold text-white shadow-[0_10px_30px_rgba(10,132,255,0.4)] transition-colors hover:bg-[#0670D9]"
+            className="mt-6 block rounded-xl bg-corp px-6 py-3 text-center text-lg font-semibold text-white shadow-[0_10px_24px_rgba(21,61,205,0.35)] transition-colors hover:bg-[#0B2BA8]"
           >
             {ctaLabel}
           </a>

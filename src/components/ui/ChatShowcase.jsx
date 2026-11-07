@@ -13,7 +13,7 @@
  *  - bubbles: até 3 mensagens
  *      { from: "user", text }    -> mensagem do cliente (vidro, com ícone de pessoa)
  *      { from: "user", audio }   -> áudio do cliente (ex.: audio: "0:12")
- *      { from: "bot", text }     -> resposta (azul, com o ícone do item); "\n" quebra a linha
+ *      { from: "bot", text }     -> resposta (branca, com o ícone do item); "\n" quebra a linha
  *      { from: "bot", text, options: [] } -> resposta com botões de resposta rápida
  *      { from: "user", text, quote }       -> resposta citando a mensagem anterior
  */
@@ -125,17 +125,21 @@ function SceneBackdrop({ flip = false }) {
         </linearGradient>
       </defs>
 
-      {/* Forma orgânica */}
+      {/* Forma orgânica, com contorno branco fino */}
       <path
         d="M78 96C118 34 236 22 320 44c92 24 150 78 146 168-4 92-64 166-182 176-112 10-214-22-244-108C18 204 42 152 78 96Z"
         fill={`url(#backdrop-fill-${flip ? "r" : "l"})`}
+        stroke="#ffffff"
+        strokeOpacity="0.22"
+        strokeWidth="1.5"
+        vectorEffect="non-scaling-stroke"
       />
 
       {/* Linha tracejada em curva, passando por baixo do personagem */}
       <path
         d="M44 250c10 90 120 140 230 128 90-10 160-60 190-130"
-        stroke="#5AB0FF"
-        strokeOpacity="0.45"
+        stroke="#ffffff"
+        strokeOpacity="0.5"
         strokeWidth="1.5"
         strokeDasharray="6 8"
         vectorEffect="non-scaling-stroke"
@@ -147,12 +151,12 @@ function SceneBackdrop({ flip = false }) {
       <path d="M440 62c18 14 30 32 36 54" stroke="#fff" strokeOpacity="0.25" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
 
       {/* "+" e pontinhos */}
-      <g stroke="#5AB0FF" strokeOpacity="0.6" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke">
+      <g stroke="#ffffff" strokeOpacity="0.55" strokeWidth="1.5" strokeLinecap="round" vectorEffect="non-scaling-stroke">
         <path d="M30 200v12M24 206h12" vectorEffect="non-scaling-stroke" />
         <path d="M470 330v12M464 336h12" vectorEffect="non-scaling-stroke" />
         <path d="M250 18v10M245 23h10" vectorEffect="non-scaling-stroke" />
       </g>
-      <circle cx="60" cy="300" r="3" fill="#5AB0FF" fillOpacity="0.5" />
+      <circle cx="60" cy="300" r="3" fill="#ffffff" fillOpacity="0.5" />
       <circle cx="420" cy="40" r="3" fill="#fff" fillOpacity="0.35" />
       <circle cx="480" cy="230" r="2.5" fill="#fff" fillOpacity="0.3" />
     </svg>
@@ -175,10 +179,10 @@ function Bubble({ from, text, audio, options, quote, icon, index, flip }) {
       style={{ animationDelay: `${index * -1.7}s` }}
     >
       <div
-        className={`rounded-2xl px-4 py-3 text-sm leading-snug text-white ${
+        className={`rounded-2xl px-4 py-3 text-sm leading-snug ${
           isUser
-            ? "border border-white/15 bg-white/[0.08] backdrop-blur-sm"
-            : "bg-[#0B1F5E] shadow-[0_10px_28px_rgba(4,12,50,0.45)]"
+            ? "border border-white/15 bg-white/[0.08] text-white backdrop-blur-sm"
+            : "bg-white text-navy shadow-[0_10px_28px_rgba(4,12,50,0.35)]"
         } ${iconRight ? "rounded-tr-md" : "rounded-tl-md"}`}
       >
         {/* Mensagem respondida (citação, como no WhatsApp) */}
@@ -211,7 +215,7 @@ function Bubble({ from, text, audio, options, quote, icon, index, flip }) {
             {options.map((opt) => (
               <span
                 key={opt}
-                className="flex items-center justify-center gap-1.5 rounded-lg bg-white/15 px-3 py-1.5 text-xs font-medium"
+                className="flex items-center justify-center gap-1.5 rounded-lg bg-[#EAF3FF] px-3 py-1.5 text-xs font-medium text-navy"
               >
                 <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M9 14 4 9l5-5" />
@@ -252,7 +256,7 @@ function ChatColumn({ title, description, character, icon = "chat", bubbles = []
         {/* Personagem, no lado de fora */}
         <div className={`absolute top-1/2 w-[42%] -translate-y-1/2 ${flip ? "right-0" : "left-0"}`}>
           {/* Círculo de luz atrás do personagem */}
-          <span className="absolute left-1/2 top-1/2 aspect-square w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(90,176,255,0.3),rgba(11,43,196,0.14)_60%,transparent)]" />
+          <span className="absolute left-1/2 top-1/2 aspect-square w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.22),rgba(255,255,255,0.06)_60%,transparent)]" />
 
           {character === "robot" ? (
             <Robot className="character-float relative mx-auto w-[80%]" />

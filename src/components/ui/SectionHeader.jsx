@@ -13,6 +13,13 @@ const colors = {
     glow: "bg-white",
     bar: "bg-white shadow-[0_0_16px_rgba(255,255,255,0.8)]",
   },
+  // Para seções com fundo azul claro (Condomínios): texto e barra em marinho
+  navy: {
+    glow: "bg-white",
+    bar: "bg-navy shadow-[0_0_16px_rgba(11,31,94,0.35)]",
+    text: "text-navy",
+    eyebrow: "text-corp",
+  },
 };
 
 export default function SectionHeader({ title, eyebrow, align = "left", color = "blue" }) {
@@ -22,7 +29,7 @@ export default function SectionHeader({ title, eyebrow, align = "left", color = 
   return (
     <div
       className={`relative z-[3] flex w-full items-center gap-6 overflow-x-clip
-        px-6 py-7 text-white md:px-12 md:py-9
+        px-6 py-7 md:px-12 md:py-9 ${c.text ?? "text-white"}
         ${isRight ? "flex-row-reverse text-right" : "text-left"}`}
     >
       {/* Brilho que acompanha o lado do título (pode se espalhar para cima e para baixo) */}
@@ -40,7 +47,7 @@ export default function SectionHeader({ title, eyebrow, align = "left", color = 
 
         <div className="flex flex-col">
           {eyebrow && (
-            <span className="mb-1 text-xs font-medium uppercase tracking-[0.3em] text-[#5AB0FF]">
+            <span className={`mb-1 text-xs font-medium uppercase tracking-[0.3em] ${c.eyebrow ?? "text-[#5AB0FF]"}`}>
               {eyebrow}
             </span>
           )}
