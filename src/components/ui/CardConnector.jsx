@@ -16,18 +16,18 @@ export default function CardConnector({ className = "" }) {
       >
         <style>{`
           .connector-base {
-            stroke: #5AB0FF;
+            stroke: #ffffff;
             stroke-width: 2;
-            opacity: 0.45;
+            opacity: 0.55;
           }
           /* Traços de luz correndo pela linha, dos cards de cima até o de baixo (como dados fluindo) */
           .connector-pulse {
-            stroke: #5AB0FF;
+            stroke: #ffffff;
             stroke-width: 3;
             stroke-linecap: round;
             stroke-dasharray: 12 48;
             animation: connector-flow 1.6s linear infinite;
-            filter: drop-shadow(0 0 4px #5AB0FF);
+            filter: drop-shadow(0 0 4px rgba(255,255,255,.8));
           }
           @keyframes connector-flow {
             from { stroke-dashoffset: 0; }
@@ -53,10 +53,10 @@ export default function CardConnector({ className = "" }) {
       </svg>
 
       {/* Pontos nas pontas (em HTML para não deformarem) */}
-      <span className="absolute left-[24.5%] top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5AB0FF] shadow-[0_0_10px_#5AB0FF]" />
-      <span className="absolute left-[75.5%] top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5AB0FF] shadow-[0_0_10px_#5AB0FF]" />
-      <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#5AB0FF]" />
-      <span className="absolute bottom-0 left-1/2 h-2.5 w-2.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-[#5AB0FF] shadow-[0_0_10px_#5AB0FF]" />
+      <span className="absolute left-[24.5%] top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+      <span className="absolute left-[75.5%] top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+      <span className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
+      <span className="absolute bottom-0 left-1/2 h-2.5 w-2.5 -translate-x-1/2 translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
     </div>
   );
 }

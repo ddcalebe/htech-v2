@@ -79,7 +79,7 @@ function Icon({ name, className = "" }) {
 function Node({ label, icon }) {
   return (
     <div className="relative shrink-0">
-      <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-[#5AB0FF]/70 bg-[#5AB0FF]/10 text-white">
+      <div className="grid h-14 w-14 place-items-center rounded-full border-2 border-white/75 bg-white/10 text-white">
         <Icon name={icon} className="h-6 w-6" />
       </div>
       {/* Nome embaixo do círculo, sem mudar a altura do item (assim tudo fica centralizado na linha) */}
@@ -116,9 +116,9 @@ export default function IntegrationsHub({
     <div className={`text-white ${className}`}>
       <style>{`
         .hub-line {
-          background: repeating-linear-gradient(90deg, #5AB0FF 0 10px, transparent 10px 34px);
-          opacity: .75;
-          filter: drop-shadow(0 0 3px #5AB0FF);
+          background: repeating-linear-gradient(90deg, #ffffff 0 10px, transparent 10px 34px);
+          opacity: .8;
+          filter: drop-shadow(0 0 3px rgba(255,255,255,.6));
           animation: hub-flow 1.2s linear infinite;
         }
         .hub-line-rev { animation-name: hub-flow-rev; }
@@ -127,7 +127,7 @@ export default function IntegrationsHub({
 
         .hub-ring::before {
           content: ""; position: absolute; inset: 0; border-radius: 9999px; padding: 4px;
-          background: conic-gradient(from 0deg, #5AB0FF, #0A84FF, #5AB0FF, #0B2BC4, #5AB0FF);
+          background: conic-gradient(from 0deg, #ffffff, #5AB0FF, #ffffff, #A8D4FF, #ffffff);
           -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           -webkit-mask-composite: xor;
           mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
@@ -155,7 +155,7 @@ export default function IntegrationsHub({
 
         {/* Círculo central (fim das linhas do CardConnector) */}
         <div
-          className="hub-ring relative order-first mx-2 grid h-32 w-32 shrink-0 place-items-center rounded-full bg-[#10151f] shadow-[0_0_40px_rgba(90,176,255,0.45),inset_0_0_24px_rgba(90,176,255,0.15)] md:order-none"
+          className="hub-ring relative order-first mx-2 grid h-32 w-32 shrink-0 place-items-center rounded-full bg-[#071433] shadow-[0_0_40px_rgba(255,255,255,0.35),inset_0_0_24px_rgba(90,176,255,0.15)] md:order-none"
           role="img"
           aria-label={title}
         >
@@ -179,7 +179,7 @@ export default function IntegrationsHub({
         <h4 className="text-3xl font-semibold uppercase tracking-wide">{title}</h4>
         {description && <p className="max-w-2xl text-white/80">{description}</p>}
         {linkLabel && (
-          <a href={href} className="font-semibold text-[#5AB0FF] transition hover:text-white">
+          <a href={href} className="font-semibold text-white/90 underline-offset-4 transition hover:text-white hover:underline">
             {linkLabel} →
           </a>
         )}

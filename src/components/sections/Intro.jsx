@@ -8,7 +8,7 @@ const Intro = () => {
         </span>
       </h2>
 
-      {/* Horizonte em arco: o preto sobe em curva até a barra "Soluções Corporativas" */}
+      {/* Horizonte em arco: o azul de empresas sobe em curva até a barra "Soluções Corporativas" */}
       <svg
         aria-hidden="true"
         viewBox="0 0 1000 110"
@@ -28,8 +28,8 @@ const Intro = () => {
           </linearGradient>
         </defs>
 
-        {/* Área escura (mesmo tom do início da barra: neutral-900) */}
-        <path d="M0 110 L0 90 Q500 -30 1000 90 L1000 110 Z" fill="#171717" />
+        {/* Área azul (mesmo tom do fundo da seção de Empresas) */}
+        <path d="M0 110 L0 90 Q500 -30 1000 90 L1000 110 Z" fill="var(--color-corp)" />
 
         {/* Contorno: uma camada borrada (brilho) + uma fina por cima */}
         <path

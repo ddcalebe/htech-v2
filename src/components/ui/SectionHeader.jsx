@@ -8,6 +8,11 @@ const colors = {
     glow: "bg-condo",
     bar: "bg-condo shadow-[0_0_16px_var(--color-condo)]",
   },
+  // Para seções com fundo azul (Empresas)
+  white: {
+    glow: "bg-white",
+    bar: "bg-white shadow-[0_0_16px_rgba(255,255,255,0.8)]",
+  },
 };
 
 export default function SectionHeader({ title, eyebrow, align = "left", color = "blue" }) {

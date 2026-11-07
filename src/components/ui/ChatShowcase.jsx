@@ -105,7 +105,7 @@ function Robot({ className = "" }) {
 }
 
 /**
- * Fundo de cada cena (como na referência): uma forma orgânica azul-clara atrás do personagem e das mensagens,
+ * Fundo de cada cena (como na referência): uma forma orgânica escura atrás do personagem e das mensagens,
  * com uma linha tracejada em curva, arcos, "+" e pontinhos. Espelhado na 2ª coluna.
  */
 function SceneBackdrop({ flip = false }) {
@@ -119,8 +119,9 @@ function SceneBackdrop({ flip = false }) {
     >
       <defs>
         <linearGradient id={`backdrop-fill-${flip ? "r" : "l"}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#5AB0FF" stopOpacity="0.2" />
-          <stop offset="1" stopColor="#0B2BC4" stopOpacity="0.12" />
+          {/* Tons escuros (marinho → quase preto), combinando com o card do produto */}
+          <stop offset="0" stopColor="#0B1F5E" stopOpacity="0.75" />
+          <stop offset="1" stopColor="#071433" stopOpacity="0.6" />
         </linearGradient>
       </defs>
 

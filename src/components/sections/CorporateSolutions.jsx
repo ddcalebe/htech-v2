@@ -63,7 +63,7 @@ const included = [
 ];
 
 // TODO: trocar pelas integrações reais do CRM.
-// Ícones disponíveis: database, sheet, mail, web, calendar, api, link
+// Ícones disponíveis: database, sheet, mail, web, calendar, api, form, link
 // (metade vai para a esquerda do círculo e metade para a direita)
 const integrations = [
   { label: "ERP", icon: "database" },
@@ -92,8 +92,8 @@ export default function CorporateSolutions() {
   useGridLogo(gridRef, { width: 1 });
 
   return (
-    <section id="solucoes-corporativas" className="bg-neutral-900">
-      <SectionHeader title="Soluções Corporativas" />
+    <section id="solucoes-corporativas" className="bg-corp">
+      <SectionHeader title="Soluções Corporativas" color="white" />
 
       {/* Uma grade só: o logo grande atravessa todos os cards */}
       <div ref={gridRef} className="relative mx-auto grid max-w-7xl gap-6 px-6 py-10">
