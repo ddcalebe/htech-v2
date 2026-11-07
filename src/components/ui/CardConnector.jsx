@@ -4,10 +4,13 @@
  *
  * As linhas descem do meio de cada card de cima (24,5% e 75,5% da largura,
  * descontando o espaço entre os cards), se juntam no centro e descem até o card de baixo.
+ *
+ * flip = true inverte de cabeça para baixo: uma linha sai do centro de cima e se divide para os dois de baixo
+ * (usado entre o CRM e os chats).
  */
-export default function CardConnector({ className = "" }) {
+export default function CardConnector({ className = "", flip = false }) {
   return (
-    <div aria-hidden="true" className={`pointer-events-none relative ${className}`}>
+    <div aria-hidden="true" className={`pointer-events-none relative ${flip ? "-scale-y-100" : ""} ${className}`}>
       <svg
         viewBox="0 0 100 100"
         preserveAspectRatio="none"

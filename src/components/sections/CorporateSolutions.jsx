@@ -4,6 +4,7 @@ import ProductCard from "../cards/ProductCard";
 import CardConnector from "../ui/CardConnector";
 import IntegrationsHub from "../ui/IntegrationsHub";
 import ChatShowcase from "../ui/ChatShowcase";
+import CrmShowcase from "../ui/CrmShowcase";
 import haia from "../../assets/haia.webp";
 import useGridLogo from "../../hooks/useGridLogo";
 import laptop from "../../assets/services/crm-laptop.png";
@@ -26,6 +27,18 @@ const crm = {
   laptopImage: laptop,
   phoneImage: phone,
   tabletImage: tablet,
+};
+
+// CRM: três prints do sistema em leque, do fundo para a frente.
+// TODO: importar os prints reais e colocar em `images`, ex.:
+//   import crmContatos from "../../assets/services/crm-contatos.png";
+//   import crmKanban from "../../assets/services/crm-kanban.png";
+//   import crmRelatorios from "../../assets/services/crm-relatorios.png";
+const crmShowcase = {
+  title: "CRM",
+  description: "Funil de vendas, histórico de cada cliente e relatórios de atendimento, tudo no mesmo lugar.",
+  items: ["Funil de vendas por etapas", "Histórico de cada contato", "Relatórios e métricas da equipe"],
+  images: [], // [crmContatos, crmKanban, crmRelatorios]
 };
 
 // Chatbot (esquerda, com o robô) e Agente de IA (direita, com o bonequinho do cursor).
@@ -101,13 +114,19 @@ export default function CorporateSolutions() {
 
         <h3 className="mt-2 text-3xl font-semibold text-white">OTIMIZE SUA EXPERIÊNCIA DE ATENDIMENTO:</h3>
 
-        {/* Inclusos: Chatbot e Agente de IA em cima, ligados pelas linhas ao hub de Integrações embaixo.
+        {/* Inclusos: CRM em cima; dele sai uma linha que se divide para o Chatbot e o Agente de IA,
+            que por sua vez se ligam ao hub de Integrações embaixo.
             Sem "relative" aqui, para o logo de fundo continuar alinhado com o CRM e o PABX. */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-rows-[auto_150px_auto] lg:gap-y-0">
-          <ChatShowcase className="md:col-span-2 lg:pb-6" items={included} />
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-rows-[auto_110px_auto_150px_auto] lg:gap-y-0">
+          <CrmShowcase className="md:col-span-2 lg:pb-2" {...crmShowcase} />
+
+          {/* Linha do CRM se dividindo para as duas conversas (só no desktop) */}
+          <CardConnector flip className="hidden lg:col-span-2 lg:row-start-2 lg:block" />
+
+          <ChatShowcase className="md:col-span-2 lg:row-start-3 lg:pb-6 lg:pt-5" items={included} />
 
           {/* Linhas ligando as duas conversas ao hub (só no desktop) */}
-          <CardConnector className="hidden lg:col-span-2 lg:row-start-2 lg:block" />
+          <CardConnector className="hidden lg:col-span-2 lg:row-start-4 lg:block" />
 
           <IntegrationsHub
             className="md:col-span-2"
