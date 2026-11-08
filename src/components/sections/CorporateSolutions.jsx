@@ -11,6 +11,10 @@ import laptop from "../../assets/services/crm-laptop.png";
 import tablet from "../../assets/services/crm-tablet.png";
 import phone from "../../assets/services/crm-phone.png";
 import pabxImage from "../../assets/services/pabx.png";
+// Ícones dos canais (pretos, fundo transparente): o ProductCard pinta com o azul do site
+import whatsappIcon from "../../assets/icons/whatsapp-icon.png";
+import messengerIcon from "../../assets/icons/messenger-icon.png";
+import instagramIcon from "../../assets/icons/instagram-icon.png";
 
 const crm = {
   badge: "Para empresas",
@@ -25,6 +29,8 @@ const crm = {
     { title: "Relatórios e métricas:", text: "quantos atendimentos, taxa de conversão, desempenho da equipe." },
   ],
   laptopImage: laptop,
+  // Ícones dos canais flutuando ao lado do título (até 3)
+  floatingIcons: [whatsappIcon, messengerIcon, instagramIcon],
   phoneImage: phone,
   tabletImage: tablet,
 };
@@ -105,7 +111,7 @@ export default function CorporateSolutions() {
   useGridLogo(gridRef, { width: 1 });
 
   return (
-    <section id="solucoes-corporativas" className="bg-corp">
+    <section id="solucoes-corporativas" className="bg-corp pb-16">
       <SectionHeader title="Soluções Corporativas" color="white" />
 
       {/* Uma grade só: o logo grande atravessa todos os cards */}

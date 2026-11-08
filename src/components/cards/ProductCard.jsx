@@ -15,6 +15,9 @@ import htechCloud from "../../assets/logo/htech-nuvem.png";
  *      text:  complemento curto (ex.: "em um só lugar")
  *      icon:  "users" | "funnel" | "clock" | "chat" | "chart" | "phone" | "menu" | "record"
  *  - image | laptopImage + tabletImage + phoneImage
+ *  - floatingIcons: até 3 imagens de ícone (ex.: WhatsApp, Messenger, Instagram) que flutuam ao lado do título.
+ *      Use PNG/SVG com fundo transparente, de qualquer cor: o ícone é pintado com `floatingIconColor`.
+ *  - floatingIconColor: cor ou degradê dos ícones (padrão: degradê do azul de empresas ao azul claro)
  *  - className
  */
 
@@ -67,6 +70,13 @@ function Icon({ name }) {
   );
 }
 
+// Posição e tamanho de cada ícone flutuante (até 3), espalhados no espaço ao lado do título
+const floatSpots = [
+  "left-[6%] top-[4%] h-20 w-20 -rotate-6",   // 1º: WhatsApp (o maior)
+  "right-[4%] top-[6%] h-16 w-16 rotate-3",   // 2º: Messenger (menor)
+  "left-[44%] top-[58%] h-14 w-14 rotate-6",  // 3º: Instagram
+];
+
 export default function ProductCard({
   badge,
   title,
@@ -78,6 +88,8 @@ export default function ProductCard({
   laptopImage,
   tabletImage,
   phoneImage,
+  floatingIcons = [],
+  floatingIconColor = "linear-gradient(135deg, var(--color-corp), #5AB0FF)",
   className = "",
 }) {
   const hasMockup = laptopImage || tabletImage || phoneImage;
@@ -85,6 +97,16 @@ export default function ProductCard({
   return (
     <article
       className={`relative isolate grid items-center gap-10 overflow-hidden rounded-3xl bg-white p-6 text-navy shadow-[0_24px_50px_rgba(4,12,50,0.25)] md:p-10 lg:grid-cols-[1.2fr_1fr] lg:gap-12 ${className}`}    >
+      <style>{`
+        /* Ícones dos canais flutuando de leve, cada um num tempo */
+        .product-float { animation: product-float 6s ease-in-out infinite; }
+        @keyframes product-float {
+          0%, 100% { translate: 0 0; }
+          50% { translate: 0 -8px; }
+        }
+        @media (prefers-reduced-motion: reduce) { .product-float { animation: none; } }
+      `}</style>
+
       {/* Grade suave, mais forte perto do título e sumindo nas bordas */}
       <span
         aria-hidden="true"
@@ -103,11 +125,40 @@ export default function ProductCard({
         src={htechCloud}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-[18%] -right-[8%] -z-10 w-[52%] opacity-[0.15]"
+        className="pointer-events-none absolute -bottom-[18%] -right-[8%] -z-10 w-[52%] opacity-[0.07]"
       />
 
       {/* Esquerda: badge, título, subtítulo e imagem */}
       <div className="relative flex min-w-0 flex-col">
+        {/* Ícones dos canais flutuando no espaço ao lado do título (só em telas grandes) */}
+        {floatingIcons.length > 0 && (
+          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 hidden h-44 w-[38%] lg:block">
+            {floatingIcons.slice(0, 3).map((icon, i) => (
+              <span
+                key={i}
+                className={`product-float absolute grid place-items-center rounded-full bg-white shadow-[0_14px_30px_rgba(11,31,94,0.18)] ring-1 ring-[#e1e9fb] ${floatSpots[i]}`}
+                style={{ animationDelay: `${i * -1.6}s` }}
+              >
+                {/* O PNG vira máscara e é pintado com o degradê azul do site (funciona com ícone preto) */}
+                <span
+                  className="h-[52%] w-[52%]"
+                  style={{
+                    background: floatingIconColor,
+                    WebkitMaskImage: `url(${icon})`,
+                    maskImage: `url(${icon})`,
+                    WebkitMaskSize: "contain",
+                    maskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    maskPosition: "center",
+                  }}
+                />
+              </span>
+            ))}
+          </div>
+        )}
+
         {badge && (
           <span className="self-start rounded bg-corp px-2 py-0.5 text-xs font-semibold text-white">{badge}</span>
         )}
