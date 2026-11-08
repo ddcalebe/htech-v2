@@ -12,7 +12,7 @@ const MAP_EXTRA_COLOR = "var(--color-primary-gray)";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[600px] flex-col items-center justify-center overflow-x-clip bg-secondary-gray px-4 py-24">
+    <section className="relative flex min-h-[600px] flex-col items-center justify-center overflow-x-clip bg-secondary-gray px-4 pb-20 pt-40">
       {/* Fundo: mapa da cidade, com intensidade em opacity-40.
           No centro o mapa termina na base do Hero; nas laterais ele continua para baixo e vai sumindo. */}
       <div

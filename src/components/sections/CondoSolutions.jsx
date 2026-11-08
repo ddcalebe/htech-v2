@@ -62,7 +62,7 @@ export default function CondoSolutions() {
   useGridLogo(gridRef, { width: 0.88 });
 
   return (
-    <section id="solucoes-condominiais" className="bg-condo pb-16 pt-10">
+    <section id="solucoes-condominiais" className="bg-condo pb-16 pt-10 -scroll-mt-10">
       <SectionHeader title="Soluções Condominiais" align="right" color="navy" />
 
       {/* Grade de 5 colunas: as fileiras alternam largo (3) + estreito (2) e estreito (2) + largo (3) */}
