@@ -162,7 +162,7 @@ export default function ProductCard({
         {badge && (
           <span className="self-start rounded bg-corp px-2 py-0.5 text-xs font-semibold text-white">{badge}</span>
         )}
-        <h3 className="mt-2 font-display text-4xl font-semibold uppercase leading-[1.05] md:text-5xl">
+        <h3 className="mt-2 whitespace-pre-line font-display text-4xl font-semibold uppercase leading-[1.05] md:text-5xl">
           <span className="bg-[linear-gradient(135deg,var(--color-corp),#5AB0FF)] bg-clip-text pb-1 text-transparent">
             {title}
           </span>

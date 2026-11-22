@@ -10,7 +10,7 @@ import useGridLogo from "../../hooks/useGridLogo";
 import laptop from "../../assets/services/crm-laptop.png";
 import tablet from "../../assets/services/crm-tablet.png";
 import phone from "../../assets/services/crm-phone.png";
-import pabxImage from "../../assets/services/pabx.png";
+import pabxImage from "../../assets/services/pabx.webp";
 // Ícones dos canais (pretos, fundo transparente): o ProductCard pinta com o azul do site
 import whatsappIcon from "../../assets/icons/whatsapp-icon.png";
 import messengerIcon from "../../assets/icons/messenger-icon.png";
@@ -18,7 +18,7 @@ import instagramIcon from "../../assets/icons/instagram-icon.png";
 
 const crm = {
   badge: "Para empresas",
-  title: "CENTRAL DE CONVERSAS",
+  title: "CENTRAL DE\nCONVERSAS",
   subtitle: "Atendimento multicanal WEB e Mobile",
   ctaLabel: "Solicitar demonstração grátis",
   features: [
@@ -115,7 +115,7 @@ export default function CorporateSolutions() {
       <SectionHeader title="Soluções Corporativas" color="white" />
 
       {/* Uma grade só: o logo grande atravessa todos os cards */}
-      <div ref={gridRef} className="relative mx-auto grid max-w-7xl gap-6 px-6 py-10">
+      <div ref={gridRef} className="relative mx-auto grid max-w-[1600px] gap-6 px-6 py-10 md:px-10 2xl:px-16">
         <ProductCard {...crm} />
 
         <h3 className="mt-2 text-3xl font-semibold text-white">OTIMIZE SUA EXPERIÊNCIA DE ATENDIMENTO:</h3>

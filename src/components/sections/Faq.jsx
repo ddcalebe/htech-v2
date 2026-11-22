@@ -64,7 +64,7 @@ export default function Faq() {
   return (
     <section
       id="faq"
-      className="text-[#0B1F5E]"
+      className="text-[#0B1F5E] pt-50 pb-20"
       style={{
         // Transição suave do preto da seção anterior para o branco (paradas em curva, sem "faixa" no meio)
       background:
