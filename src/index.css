@@ -48,3 +48,33 @@ html {
     scroll-behavior: auto;
   }
 }
+
+/* ===== Animação de aparecer ao rolar (usada com o hook useScrollReveal) ===== */
+/* Usa "animation" (e não "transition") para não brigar com os hovers dos cards */
+.reveal {
+  opacity: 0;
+}
+
+.reveal.is-visible {
+  animation: reveal-up 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay, 0ms) both;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Quem pede "reduzir movimento" no sistema vê tudo direto, sem animação */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    animation: none;
+  }
+}

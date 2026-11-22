@@ -1,5 +1,5 @@
-// ⚠️ PERGUNTAS E RESPOSTAS DE EXEMPLO: revisar antes de publicar.
-// O que está entre [colchetes] depende das regras de vocês (prazos, contrato, suporte) e precisa ser preenchido.
+import { whatsappLink } from "../../config/contact";
+
 const faqs = [
   {
     type: "Empresas",
@@ -72,27 +72,32 @@ export default function Faq() {
       }}
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-20 pt-80 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
-        {/* Esquerda: título e chamada */}
-        <div className="lg:sticky lg:top-28 lg:self-start">
+        {/* Esquerda: título e chamada (aparece ao rolar) */}
+        <div className="reveal lg:sticky lg:top-28 lg:self-start">
           <span className="text-sm font-semibold uppercase tracking-[0.3em] text-[#0A84FF]">FAQ</span>
           <h2 className="mt-3 text-4xl font-semibold leading-tight md:text-5xl">Perguntas frequentes</h2>
           <p className="mt-4 max-w-sm text-[#0B1F5E]/80">
             Não encontrou o que procurava? Fale com a nossa equipe e tire suas dúvidas direto com um especialista.
           </p>
           <a
-            href="#contato"
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-6 inline-flex items-center justify-center rounded-md bg-[#0A84FF] px-6 py-2.5 font-semibold text-white transition hover:bg-[#0B1F5E]"
           >
             Fale com a gente
           </a>
         </div>
 
-        {/* Direita: perguntas (abre e fecha sem JavaScript, com <details>) */}
+        {/* Direita: perguntas (abre e fecha sem JavaScript, com <details>).
+            Aparecem ao rolar, uma depois da outra (80ms de diferença entre cada) */}
         <div className="flex flex-col gap-3">
-          {faqs.map((item) => (
+          {faqs.map((item, i) => (
             <details
               key={item.question}
-              className="group rounded-xl border border-[#0B1F5E]/10 bg-white transition-colors hover:border-[#0A84FF]/30 open:border-[#0A84FF]/25 open:shadow-lg open:shadow-[#0B1F5E]/10"            >
+              style={{ "--reveal-delay": `${150 + i * 80}ms` }}
+              className="reveal group rounded-xl border border-[#0B1F5E]/10 bg-white transition-colors hover:border-[#0A84FF]/30 open:border-[#0A84FF]/25 open:shadow-lg open:shadow-[#0B1F5E]/10"
+            >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
                 <span className="flex flex-col gap-1">
                   <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0A84FF]">{item.type}</span>

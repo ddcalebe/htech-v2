@@ -82,13 +82,15 @@ export default function Clients() {
 
       {/* Depoimentos */}
       <div className="mx-auto mt-16 max-w-7xl px-6">
-        <h3 className="mb-8 text-3xl font-semibold">O que dizem nossos clientes</h3>
+        <h3 className="reveal mb-8 text-3xl font-semibold">O que dizem nossos clientes</h3>
 
+        {/* Os 3 cards aparecem ao rolar, um depois do outro */}
         <div className="grid gap-6 md:grid-cols-3">
           {testimonials.map((t, i) => (
             <figure
               key={i}
-              className="flex flex-col gap-4 items-center rounded-xl border border-white/10 bg-neutral-800/60 p-6"
+              style={{ "--reveal-delay": `${150 + i * 150}ms` }}
+              className="reveal flex flex-col gap-4 items-center rounded-xl border border-white/10 bg-neutral-800/60 p-6"
             >
 
 

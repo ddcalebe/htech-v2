@@ -62,12 +62,19 @@ const cards = [
 export default function CondoSolutions() {
   return (
     <section id="solucoes-condominiais" className="bg-condo pb-16 pt-10 -scroll-mt-10">
-      <SectionHeader title="Soluções Condominiais" align="right" color="navy" />
+      <div className="reveal relative z-[3]">
+        <SectionHeader title="Soluções Condominiais" align="right" color="navy" />
+      </div>
 
       {/* Grade de 12 colunas: no celular e tablet os cards ficam empilhados */}
       <div className="relative mx-auto grid max-w-[1600px] gap-8 px-6 py-10 md:px-10 lg:grid-cols-12 2xl:px-16">
-        {cards.map((card) => (
-          <CondoCard key={card.title} {...card} />
+        {/* reveal: aparece ao rolar. O card da direita de cada fileira entra um pouco depois */}
+        {cards.map((card, i) => (
+          <CondoCard
+            key={card.title}
+            {...card}
+            className={`${card.className} reveal ${i % 2 === 1 ? "[--reveal-delay:150ms]" : ""}`}
+          />
         ))}
       </div>
     </section>

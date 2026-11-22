@@ -116,37 +116,39 @@ export default function CorporateSolutions() {
 
   return (
     <section id="solucoes-corporativas" className="bg-corp pb-16">
-      <SectionHeader title="Soluções Corporativas" color="white" />
+      <div className="reveal relative z-[3]">
+        <SectionHeader title="Soluções Corporativas" color="white" />
+      </div>
 
       {/* Uma grade só: o logo grande atravessa todos os cards */}
       <div ref={gridRef} className="relative mx-auto grid max-w-[1600px] gap-6 px-6 py-10 md:px-10 2xl:px-16">
-        <ProductCard {...crm} />
+        <ProductCard {...crm} className="reveal" />
 
-        <h3 className="mt-2 text-3xl font-semibold text-white">OTIMIZE SUA EXPERIÊNCIA DE ATENDIMENTO:</h3>
+        <h3 className="reveal mt-2 text-3xl font-semibold text-white">OTIMIZE SUA EXPERIÊNCIA DE ATENDIMENTO:</h3>
 
         {/* Inclusos: CRM em cima; dele sai uma linha que se divide para o Chatbot e o Agente de IA,
             que por sua vez se ligam ao hub de Integrações embaixo.
             Sem "relative" aqui, para o logo de fundo continuar alinhado com o CRM e o PABX. */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-rows-[auto_110px_auto_150px_auto] lg:gap-y-0">
-          <CrmShowcase className="md:col-span-2 lg:pb-2" {...crmShowcase} />
+          <CrmShowcase className="reveal md:col-span-2 lg:pb-2" {...crmShowcase} />
 
           {/* Linha do CRM se dividindo para as duas conversas (só no desktop) */}
-          <CardConnector flip className="hidden lg:col-span-2 lg:row-start-2 lg:block" />
+          <CardConnector flip className="reveal hidden lg:col-span-2 lg:row-start-2 lg:block" />
 
-          <ChatShowcase className="md:col-span-2 lg:row-start-3 lg:pb-6 lg:pt-5" items={included} />
+          <ChatShowcase className="reveal md:col-span-2 lg:row-start-3 lg:pb-6 lg:pt-5" items={included} />
 
           {/* Linhas ligando as duas conversas ao hub (só no desktop) */}
-          <CardConnector className="hidden lg:col-span-2 lg:row-start-4 lg:block" />
+          <CardConnector className="reveal hidden lg:col-span-2 lg:row-start-4 lg:block" />
 
           <IntegrationsHub
-            className="md:col-span-2"
+            className="reveal md:col-span-2"
             integrations={integrations}
             description="Conecta seu CRM a outros sistemas e plataformas, sincroniza informações e automatiza processos para tornar sua operação mais prática e eficiente."
             href="#integracoes"
           />
         </div>
 
-        <ProductCard {...pabx} className="mt-4" />
+        <ProductCard {...pabx} className="reveal mt-4" />
       </div>
     </section>
   );
