@@ -124,9 +124,25 @@ export default function CorporateSolutions() {
       <div ref={gridRef} className="relative mx-auto grid max-w-[1600px] gap-6 px-6 py-10 md:px-10 2xl:px-16">
         <ProductCard {...crm} className="reveal" />
 
-        <h3 className="reveal mt-2 text-3xl font-semibold text-white">OTIMIZE SUA EXPERIÊNCIA DE ATENDIMENTO:</h3>
+        {/* Título dos recursos adicionais: centralizado, em branco, com linha de luz e brilho atrás */}
+        <div className="reveal relative mb-6 mt-10 text-center text-white md:mb-10">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-48 w-[28rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-30 blur-3xl"
+          />
+          <h3 className="relative text-3xl font-bold leading-tight tracking-tight text-balance md:text-5xl">
+            Otimize sua experiência de atendimento
+          </h3>
+          <span
+            aria-hidden="true"
+            className="relative mx-auto mb-6 mt-6 block h-1 w-36 md:mb-8 md:mt-8 rounded-full bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_14px_rgba(255,255,255,0.7)]"
+          />
+          <p className="relative text-base text-white md:text-lg">
+            Recursos adicionais para potencializar a sua Central de Conversas
+          </p>
+        </div>
 
-        {/* Inclusos: CRM em cima; dele sai uma linha que se divide para o Chatbot e o Agente de IA,
+        {/* Adicionais: CRM em cima; dele sai uma linha que se divide para o Chatbot e o Agente de IA,
             que por sua vez se ligam ao hub de Integrações embaixo.
             Sem "relative" aqui, para o logo de fundo continuar alinhado com o CRM e o PABX. */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-rows-[auto_110px_auto_150px_auto] lg:gap-y-0">
