@@ -1,4 +1,6 @@
 import { whatsappLink, WHATSAPP_DISPLAY } from "../../config/contact";
+import { useState } from "react";
+import PrivacyModal from "../ui/PrivacyModal";
 import logo from "../../assets/logo/htech-logo-blue.png";
 
 // TODO: preencher com os dados reais
@@ -42,7 +44,8 @@ const columns = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
-
+  const [privacyOpen, setPrivacyOpen] = useState(false);
+  
   return (
     <footer id="contato" className="relative bg-neutral-950 text-white/70">
       {/* Linha de luz no topo */}
@@ -128,11 +131,12 @@ export default function Footer() {
           <p>
             © {year} Htech Soluções. Todos os direitos reservados. CNPJ {contact.cnpj}
           </p>
-          <a href="#" className="transition hover:text-white">
-            Política de privacidade
-          </a>
+          <button type="button" onClick={() => setPrivacyOpen(true)}>
+            Política de Privacidade
+          </button>
         </div>
       </div>
+      <PrivacyModal open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
     </footer>
   );
 }

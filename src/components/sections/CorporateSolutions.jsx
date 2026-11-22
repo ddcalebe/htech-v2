@@ -28,7 +28,8 @@ const crm = {
     { title: "Funil de vendas organizado:", text: "acompanhar cada oportunidade, do primeiro contato ao fechamento." },
     { title: "Automação de follow-up:", text: "mensagens e lembretes automáticos enviados para cada cliente." },
     { title: "Atendimento multicanal:", text: "WhatsApp, Instagram, Messenger, etc., tudo na mesma tela." },
-    { title: "Relatórios e métricas:", text: "quantos atendimentos, taxa de conversão, desempenho da equipe." },
+    { title: "Ligações pelo WhatsApp:", text: "chamadas gravadas e transcritas automaticamente, salvas no histórico da conversa.", icon: "phone" },
+    { title: "Relatórios e métricas:", text: "quantos atendimentos, taxa de conversão, desempenho da equipe.", icon: "chart" },
   ],
   laptopImage: laptop,
   // Ícones dos canais flutuando ao lado do título (até 3)
