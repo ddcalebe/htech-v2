@@ -7,6 +7,7 @@ import Clients from "./components/sections/Clients";
 import Footer from "./components/layout/Footer";
 import CustomCursor from "./components/ui/CustomCursor";
 import Faq from "./components/sections/Faq";
+import WhatsAppButton from "./components/ui/WhatsAppButton";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Faq />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }

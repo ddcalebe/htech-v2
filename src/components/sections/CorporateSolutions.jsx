@@ -11,6 +11,7 @@ import laptop from "../../assets/services/crm-laptop.png";
 import tablet from "../../assets/services/crm-tablet.png";
 import phone from "../../assets/services/crm-phone.png";
 import pabxImage from "../../assets/services/pabx.webp";
+import { whatsappSolutionLink } from "../../config/contact";
 // Ícones dos canais (pretos, fundo transparente): o ProductCard pinta com o azul do site
 import whatsappIcon from "../../assets/icons/whatsapp-icon.png";
 import messengerIcon from "../../assets/icons/messenger-icon.png";
@@ -21,6 +22,7 @@ const crm = {
   title: "CENTRAL DE\nCONVERSAS",
   subtitle: "Atendimento multicanal WEB e Mobile",
   ctaLabel: "Solicitar demonstração grátis",
+  ctaHref: whatsappSolutionLink("Central de Conversas", "empresa", "demo"),
   features: [
     { title: "Todos os contatos em um só lugar:", text: "histórico de conversas, dados do cliente e etapa de negociação centralizados." },
     { title: "Funil de vendas organizado:", text: "acompanhar cada oportunidade, do primeiro contato ao fechamento." },
@@ -97,6 +99,7 @@ const pabx = {
   title: "PABX em nuvem",
   subtitle: "Telefonia empresarial sem central física",
   ctaLabel: "Solicitar demonstração grátis",
+  ctaHref: whatsappSolutionLink("PABX em Nuvem", "empresa", "demo"),
   image: pabxImage,
   features: [
     { title: "Ramais em qualquer lugar:", text: "atenda pelo computador, celular ou telefone IP, no escritório ou em casa." },

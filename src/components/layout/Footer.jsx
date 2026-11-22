@@ -1,9 +1,10 @@
+import { whatsappLink, WHATSAPP_DISPLAY } from "../../config/contact";
 import logo from "../../assets/logo/htech-logo-blue.png";
 
 // TODO: preencher com os dados reais
 const contact = {
-  whatsapp: "(81) 2011-5904",
-  whatsappLink: "https://wa.me/558120115904",
+  whatsapp: WHATSAPP_DISPLAY,
+  whatsappLink: whatsappLink(),
   phone: "(81) 2011-5904",
   instagram: "https://instagram.com/htechsolucoes25",
   email: "contato@htech-solucoes.com",

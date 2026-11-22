@@ -58,7 +58,7 @@ function Icon({ name, className = "" }) {
   );
 }
 
-/** Robô do Chatbot (desenho próprio): cabeça branca com visor escuro, corpo em cápsula e a logo da HTech no peito */
+/** Robô do Chatbot (desenho próprio): cabeça branca com visor escuro, corpo em cápsula e a logo da Htech no peito */
 function Robot({ className = "" }) {
   return (
     <svg viewBox="0 0 200 250" className={className} aria-hidden="true">
@@ -79,7 +79,7 @@ function Robot({ className = "" }) {
 
       {/* Corpo: ovo de cabeça para baixo. Topo largo e arredondado, afinando até a base, separado da cabeça */}
       <path d="M100 146c32 0 47 12 47 33 0 28-22 61-47 61s-47-33-47-61c0-21 15-33 47-33Z" fill="url(#robot-shell)" />
-      {/* Logo da HTech no peito (na parte mais larga) */}
+      {/* Logo da Htech no peito (na parte mais larga) */}
       <ellipse cx="100" cy="184" rx="32" ry="26" fill="#eef5ff" />
       <image href={htechCloud} x="77" y="166" width="46" height="36" preserveAspectRatio="xMidYMid meet" />
 

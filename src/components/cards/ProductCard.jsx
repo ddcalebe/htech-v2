@@ -3,7 +3,7 @@ import htechCloud from "../../assets/logo/htech-nuvem.png";
 /**
  * Card de produto (Central de Conversas, PABX...) da seção de Empresas.
  *
- * Card branco em cima da seção azul de Empresas, com uma grade suave e a nuvem da HTech
+ * Card branco em cima da seção azul de Empresas, com uma grade suave e a nuvem da Htech
  * grande ao fundo (marca d'água).
  * Esquerda: badge, título (com degradê), subtítulo e a imagem do produto com um brilho azul atrás.
  * Direita: as características em blocos arredondados com o ícone num círculo branco, e o botão no final.
@@ -120,7 +120,7 @@ export default function ProductCard({
         }}
       />
 
-      {/* Marca d'água: nuvem da HTech grande no canto de baixo */}
+      {/* Marca d'água: nuvem da Htech grande no canto de baixo */}
       <img
         src={htechCloud}
         alt=""

@@ -4,19 +4,21 @@ import smartBox from "../../assets/services/smartbox.webp";
 import intercom from "../../assets/services/intercom.webp";
 import accessControl from "../../assets/services/access-control.webp";
 import cftv from "../../assets/services/cftv.webp";
+import { whatsappSolutionLink } from "../../config/contact";
 
 // TODO: revisar os textos (exemplos)
 // Ordem = posição na grade:
 //   Smart Box: card alto à esquerda (duas fileiras)
 //   App de Gestão e Interfonia: empilhados à direita
 //   Controle de Acesso (estreito) + CFTV (largo): fileira de baixo
+// O href de cada card abre o WhatsApp com o nome da solução na mensagem.
 const cards = [
   {
     title: "Smart\nBox",
     badge: "Destaque",
     description: "O entregador deposita a encomenda e o morador retira com senha, a qualquer hora.",
     highlights: ["24 horas", "Senha única", "Aviso no celular"],
-    href: "#smart-box",
+    href: whatsappSolutionLink("Smart Box", "condominio"),
     ctaLabel: "Quero essa solução",
     tall: true,
     className: "lg:col-span-7 lg:row-span-2",
@@ -26,7 +28,7 @@ const cards = [
     title: "App de\nGestão",
     description: "Comunicados, reservas de áreas comuns, visitantes e boletos do condomínio em um só app.",
     highlights: ["Comunicados", "Reservas", "Visitantes", "Boletos"],
-    href: "#app-de-gestao",
+    href: whatsappSolutionLink("App de Gestão", "condominio"),
     reverse: true,
     className: "lg:col-span-5",
   },
@@ -34,7 +36,7 @@ const cards = [
     title: "Interfonia\nSem Fio",
     description: "O interfone toca no celular do morador, sem passar fiação nova.",
     highlights: ["Sem obra", "Toca no celular"],
-    href: "#interfonia",
+    href: whatsappSolutionLink("Interfonia Sem Fio", "condominio"),
     className: "lg:col-span-5",
     image: intercom,
   },
@@ -42,7 +44,7 @@ const cards = [
     title: "Controle\nde Acesso",
     description: "Entrada por reconhecimento facial, tag ou QR Code, com registro de cada acesso.",
     highlights: ["Facial", "Tag", "QR Code"],
-    href: "#controle-de-acesso",
+    href: whatsappSolutionLink("Controle de Acesso", "condominio"),
     reverse: true,
     className: "lg:col-span-5",
     image: accessControl,
@@ -51,7 +53,7 @@ const cards = [
     title: "CFTV",
     description: "Câmeras com gravação em nuvem e acesso pelo celular para o síndico e a portaria.",
     highlights: ["Gravação em nuvem", "Ao vivo no celular"],
-    href: "#cftv",
+    href: whatsappSolutionLink("CFTV", "condominio"),
     className: "lg:col-span-7",
     image: cftv,
   },

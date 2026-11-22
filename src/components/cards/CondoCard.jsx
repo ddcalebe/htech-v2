@@ -2,7 +2,7 @@ import htechCloud from "../../assets/logo/htech-nuvem.png";
 
 /**
  * Card das soluções condominiais, no mesmo estilo do card de produto de Empresas
- * (grade suave, nuvem da HTech como marca d'água, título com degradê, blocos com ícone
+ * (grade suave, nuvem da Htech como marca d'água, título com degradê, blocos com ícone
  * e botão arredondado), em versão escura para a seção azul clara.
  *
  * Todos os cards têm o mesmo formato: título, descrição curta, destaques (etiquetas), botão e imagem.
@@ -14,7 +14,7 @@ import htechCloud from "../../assets/logo/htech-nuvem.png";
  *  - className: posição/largura na grade (definida no CondoSolutions)
  */
 
-/** Fundo comum: grade suave + nuvem da HTech como marca d'água */
+/** Fundo comum: grade suave + nuvem da Htech como marca d'água */
 function CardBackground({ large }) {
   return (
     <>

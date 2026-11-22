@@ -58,7 +58,7 @@ export default function Clients() {
       {/* Faixa de logos */}
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="text-center text-sm font-semibold uppercase tracking-[0.3em] text-white/60">
-          Quem já confia na HTech
+          Quem já confia na Htech
         </h2>
       </div>
 

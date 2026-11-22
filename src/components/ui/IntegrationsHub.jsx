@@ -1,7 +1,7 @@
 import htechCloud from "../../assets/logo/htech-nuvem.png";
 
 /**
- * Hub de Integrações: círculo central brilhante (com a logo da HTech) ligado às ferramentas integradas.
+ * Hub de Integrações: círculo central brilhante (com a logo da Htech) ligado às ferramentas integradas.
  * Fica no fim das linhas do CardConnector (abaixo do Agente de IA e do Chatbot).
  *
  * Props:
@@ -183,7 +183,7 @@ export default function IntegrationsHub({
           {left.length > 0 && <Line reverse index={left.length} />}
         </div>
 
-        {/* Círculo central (fim das linhas do CardConnector): anel girando, ondas saindo e a logo da HTech */}
+        {/* Círculo central (fim das linhas do CardConnector): anel girando, ondas saindo e a logo da Htech */}
         <div className="relative order-first mx-3 shrink-0 md:order-none">
           <span aria-hidden="true" className="hub-pulse absolute inset-0 rounded-full border-2 border-white/60" />
           <span aria-hidden="true" className="hub-pulse absolute inset-0 rounded-full border-2 border-white/60 [animation-delay:-1.5s]" />
@@ -194,7 +194,7 @@ export default function IntegrationsHub({
             role="img"
             aria-label={title}
           >
-            {/* Logo da HTech num círculo branco */}
+            {/* Logo da Htech num círculo branco */}
             <span className="grid h-20 w-20 place-items-center rounded-full bg-white shadow-[0_0_24px_rgba(255,255,255,0.5)]">
               <img src={htechCloud} alt="" className="w-12" />
             </span>

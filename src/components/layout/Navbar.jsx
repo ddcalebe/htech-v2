@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Button from "../ui/Button";
 import logo from "../../assets/logo/htech-logo-blue.png";
+import { whatsappLink } from "../../config/contact";
 
 // Confira se os href batem com os id das suas seções
-// ("Contato" não entra porque o botão "Fale conosco" já leva para lá)
 const links = [
   { label: "Empresas", href: "#solucoes-corporativas" },
   { label: "Condomínios", href: "#solucoes-condominiais" },
@@ -17,6 +17,7 @@ const SCROLL_LIMIT = 24;
  * Navbar fixa no topo.
  * - No topo da página: transparente, na largura toda, misturada ao Hero.
  * - Depois de rolar: vira uma pílula de vidro flutuante (descolada das bordas, com desfoque e sombra).
+ * - O botão "Fale conosco" abre o WhatsApp em outra aba, com a mensagem padrão.
  *
  * Responsivo:
  * - Celular: só logo + botão (menores, para não estourar a largura).
@@ -50,7 +51,7 @@ export default function Navbar() {
         <a href="/" className="flex shrink-0 items-center gap-2">
           <img
             src={logo}
-            alt="Logo HTech"
+            alt="Logo Htech"
             className={`transition-all duration-500 ${scrolled ? "w-24 md:w-30" : "w-28 md:w-40"}`}
           />
         </a>
@@ -69,9 +70,11 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* CTA: menor no celular; na pílula fica arredondado, com seta */}
+        {/* CTA: abre o WhatsApp. Menor no celular; na pílula fica arredondado, com seta */}
         <Button
-          href="#contato"
+          href={whatsappLink()}
+          target="_blank"
+          rel="noopener noreferrer"
           size="md"
           className={`min-w-0 shrink-0 gap-2 whitespace-nowrap transition-all duration-500 max-md:!px-4 max-md:!py-1.5 max-md:!text-sm md:min-w-[140px] ${
             scrolled ? "!rounded-full" : ""
