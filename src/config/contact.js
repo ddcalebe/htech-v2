@@ -4,10 +4,10 @@
  */
 
 // Número com DDI (55) + DDD (81), só dígitos
-export const WHATSAPP_NUMBER = "558120115904";
+export const WHATSAPP_NUMBER = "558120116700";
 
 // Como o número aparece escrito no site (rodapé etc.)
-export const WHATSAPP_DISPLAY = "(81) 2011-5904";
+export const WHATSAPP_DISPLAY = "(81) 2011-6700";
 
 // Mensagem padrão (botão flutuante, rodapé, contato)
 export const WHATSAPP_MESSAGE = "Olá! Vim pelo site da Htech e gostaria de saber mais.";

@@ -7,7 +7,7 @@ import logo from "../../assets/logo/htech-logo-blue.png";
 const contact = {
   whatsapp: WHATSAPP_DISPLAY,
   whatsappLink: whatsappLink(),
-  phone: "(81) 2011-5904",
+  phone: WHATSAPP_DISPLAY,
   instagram: "https://instagram.com/htechsolucoes25",
   email: "contato@htech-solucoes.com",
   address: "[Endereço], [Cidade] - [UF]",
