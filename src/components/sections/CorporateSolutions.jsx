@@ -34,6 +34,7 @@ const crm = {
   laptopImage: laptop,
   // Ícones dos canais flutuando ao lado do título (até 3)
   floatingIcons: [whatsappIcon, messengerIcon, instagramIcon],
+  floatingLabels: ["WhatsApp", "Messenger", "Instagram"],
   phoneImage: phone,
   tabletImage: tablet,
 };

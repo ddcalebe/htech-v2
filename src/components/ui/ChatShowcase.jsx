@@ -242,8 +242,8 @@ function Bubble({ from, text, audio, options, quote, icon, index, flip }) {
 
 function ChatColumn({ title, description, character, icon = "chat", bubbles = [], flip = false }) {
   return (
-    // No desktop, cada coluna ocupa as 3 linhas da grade de fora (subgrid), assim título, ilustração e texto se alinham
-    <div className="grid gap-4 md:row-span-3 md:[grid-template-rows:subgrid]">
+    // A partir de lg (1024px), cada coluna ocupa as 3 linhas da grade de fora (subgrid), assim título, ilustração e texto se alinham
+    <div className="grid gap-4 lg:row-span-3 lg:[grid-template-rows:subgrid]">
       {/* 1. Título */}
       <div className="flex items-center justify-center">
         <h4 className="text-2xl font-semibold uppercase text-white">{title}</h4>
@@ -283,7 +283,8 @@ function ChatColumn({ title, description, character, icon = "chat", bubbles = []
 
 export default function ChatShowcase({ items = [], className = "" }) {
   return (
-    <div className={`grid gap-x-6 gap-y-12 md:grid-cols-2 md:gap-y-4 ${className}`}>
+    // Lado a lado só a partir de lg (1024px); abaixo disso, um embaixo do outro
+    <div className={`grid gap-x-6 gap-y-12 lg:grid-cols-2 lg:gap-y-4 ${className}`}>
       <style>{`
         /* Mensagens e personagens flutuando de leve, cada um num tempo */
         .bubble-float { animation: float-y 5s ease-in-out infinite; }

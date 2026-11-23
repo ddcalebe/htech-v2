@@ -118,9 +118,9 @@ export default function CondoCard({
             </ul>
           )}
 
-          {/* Nos cards horizontais o botão fica embaixo do texto */}
+          {/* Nos cards horizontais o botão fica embaixo do texto (só quando texto e imagem estão lado a lado, a partir de sm) */}
           {!tall && (
-            <div className="mt-auto w-full pt-6">
+            <div className="mt-auto hidden w-full pt-6 sm:block">
               <Cta href={href} size="sm">
                 {ctaLabel}
               </Cta>
@@ -148,9 +148,9 @@ export default function CondoCard({
           )}
         </div>
 
-        {/* No card alto o botão fica embaixo da imagem */}
-        {tall && (
-          <div className="w-full">
+        {/* No card alto, e no card horizontal empilhado (celular), o botão é sempre o último elemento */}
+        {(tall || side) && (
+          <div className={`w-full ${tall ? "" : "sm:hidden"}`}>
             <Cta href={href} size="sm">
               {ctaLabel}
             </Cta>

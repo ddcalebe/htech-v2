@@ -16,6 +16,9 @@ import htechCloud from "../../assets/logo/htech-nuvem.png";
  *      icon:  "users" | "funnel" | "clock" | "chat" | "chart" | "phone" | "menu" | "record"
  *  - image | laptopImage + tabletImage + phoneImage
  *  - floatingIcons: até 3 imagens de ícone (ex.: WhatsApp, Messenger, Instagram) que flutuam ao lado do título.
+ *  - floatingLabels: nomes desses ícones, na mesma ordem (ex.: ["WhatsApp", "Messenger", "Instagram"]).
+ *      Onde não cabe flutuar (celular estreito e entre 1024 e 1139px), os canais aparecem
+ *      como etiquetas (ícone + nome) embaixo do subtítulo.
  *      Use PNG/SVG com fundo transparente, de qualquer cor: o ícone é pintado com `floatingIconColor`.
  *  - floatingIconColor: cor ou degradê dos ícones (padrão: degradê do azul de empresas ao azul claro)
  *  - className
@@ -89,6 +92,7 @@ export default function ProductCard({
   tabletImage,
   phoneImage,
   floatingIcons = [],
+  floatingLabels = [],
   floatingIconColor = "linear-gradient(135deg, var(--color-corp), #5AB0FF)",
   className = "",
 }) {
@@ -131,10 +135,10 @@ export default function ProductCard({
       {/* Esquerda: badge, título, subtítulo e imagem */}
       <div className="relative flex min-w-0 flex-col">
         {/* Ícones dos canais flutuando no espaço ao lado do título.
-            Aparecem a partir de sm (640px): no card vertical (abaixo de lg) também há espaço à direita do título.
-            No celular bem estreito o título ocupa a largura toda, então ficam escondidos. */}
+            Só onde sobra espaço à direita do título: de 640 a 1023px (card vertical) e a partir de 1140px.
+            Fora disso eles ficariam por cima do título, então viram etiquetas embaixo do subtítulo. */}
         {floatingIcons.length > 0 && (
-          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 hidden h-44 w-[38%] sm:block">
+          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 hidden h-44 w-[38%] sm:block lg:max-[1139px]:hidden">
             {floatingIcons.slice(0, 3).map((icon, i) => (
               <span
                 key={i}
@@ -170,6 +174,37 @@ export default function ProductCard({
           </span>
         </h3>
         {subtitle && <p className="mt-2 text-lg text-navy/75">{subtitle}</p>}
+
+        {/* Canais em etiquetas (ícone + nome): aparecem onde os ícones flutuantes ficam escondidos */}
+        {floatingIcons.length > 0 && (
+          <ul className="mt-4 flex flex-wrap gap-2 sm:hidden lg:max-[1139px]:flex">
+            {floatingIcons.slice(0, 3).map((icon, i) => (
+              <li
+                key={i}
+                className="flex items-center gap-2 rounded-full bg-white py-1.5 pl-1.5 pr-3.5 text-sm font-semibold text-navy shadow-[0_8px_20px_rgba(11,31,94,0.12)] ring-1 ring-[#e1e9fb]"
+              >
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-[#eef4ff]">
+                  <span
+                    aria-hidden="true"
+                    className="h-4 w-4"
+                    style={{
+                      background: floatingIconColor,
+                      WebkitMaskImage: `url(${icon})`,
+                      maskImage: `url(${icon})`,
+                      WebkitMaskSize: "contain",
+                      maskSize: "contain",
+                      WebkitMaskRepeat: "no-repeat",
+                      maskRepeat: "no-repeat",
+                      WebkitMaskPosition: "center",
+                      maskPosition: "center",
+                    }}
+                  />
+                </span>
+                {floatingLabels[i]}
+              </li>
+            ))}
+          </ul>
+        )}
 
         {/* Imagem com brilho atrás e sombra embaixo, para parecer flutuando */}
         <div className="relative mt-8">

@@ -1,7 +1,7 @@
 const Intro = () => {
   return (
     <section className="relative flex h-[50vh] items-start justify-center overflow-hidden pt-26 bg-secondary-gray">
-      <h2 className="relative z-[2] px-6 text-center text-4xl font-semibold text-[#0B1F5E] md:text-6xl">
+      <h2 className="relative z-[2] px-6 text-center text-4xl font-semibold text-[#0B1F5E] md:text-5xl lg:text-6xl">
         Conheça nossas{" "}
         <span className="bg-[linear-gradient(135deg,#153DCD,#5AB0FF)] bg-clip-text pb-2 text-transparent">
           soluções

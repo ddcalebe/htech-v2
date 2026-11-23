@@ -67,6 +67,66 @@ function MaskIcon({ src, color = ICON_COLOR }) {
   );
 }
 
+/**
+ * Ícones flutuando em volta da nuvem: versão do Hero para tablet e celular (abaixo de lg).
+ * Sem linhas: cada ícone sobe e desce devagar, num ritmo diferente.
+ * Fica "absolute inset-0" dentro da área da nuvem; as posições são em % dessa área.
+ * x/y: posição no celular (abaixo de 560px) · tx/ty: posição a partir de 560px (celular grande e tablet)
+ */
+const FLOAT_SPOTS = [
+  // esquerda (de cima para baixo)
+  { src: chatbot, x: 27, y: 6, tx: 24, ty: 10 },
+  { src: crm, x: 9, y: 26, tx: 8, ty: 30 },
+  { src: whatsapp, x: 10, y: 50, tx: 20, ty: 52 },
+  { src: integration, x: 9, y: 74, tx: 6, ty: 74 },
+  { src: ai, x: 29, y: 94, tx: 23, ty: 92 },
+  // direita (de cima para baixo)
+  { src: box, x: 73, y: 6, tx: 77, ty: 9 },
+  { src: phone, x: 91, y: 26, tx: 93, ty: 30 },
+  { src: cftv, x: 90, y: 50, tx: 80, ty: 51 },
+  { src: intercom, x: 91, y: 74, tx: 94, ty: 73 },
+  { src: acessControl, x: 71, y: 94, tx: 76, ty: 92 },
+];
+
+export function FloatingIcons({ className = "", iconColor = ICON_COLOR, slotFill = SLOT_FILL }) {
+  return (
+    <div aria-hidden="true" className={`pointer-events-none absolute inset-0 ${className}`}>
+      <style>{`
+        .hero-float { animation: hero-float 5s ease-in-out infinite; }
+        @keyframes hero-float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-float { animation: none; }
+        }
+      `}</style>
+
+      {FLOAT_SPOTS.map((spot, i) => (
+        <span
+          key={i}
+          className="absolute left-[var(--x)] top-[var(--y)] -translate-x-1/2 -translate-y-1/2 min-[560px]:left-[var(--tx)] min-[560px]:top-[var(--ty)]"
+          style={{ "--x": `${spot.x}%`, "--y": `${spot.y}%`, "--tx": `${spot.tx}%`, "--ty": `${spot.ty}%` }}
+        >
+          <span
+            className="hero-float flex h-15 w-15 min-[560px]:h-[72px] min-[560px]:w-[72px] items-center justify-center rounded-full border-2 border-blue shadow-[0_0_0_4px_rgba(90,176,255,0.12)] md:h-[72px] md:w-[72px]"
+            style={{
+              background: slotFill,
+              // cada ícone num ritmo e num momento diferente
+              animationDuration: `${4.2 + (i % 4) * 0.7}s`,
+              animationDelay: `${-i * 0.55}s`,
+            }}
+          >
+            <span className="h-[52%] w-[52%] [&>*]:h-full [&>*]:w-full">
+              <MaskIcon src={spot.src} color={iconColor} />
+            </span>
+          </span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 const WIDTH = 1600;
 const HEIGHT = 600;
 

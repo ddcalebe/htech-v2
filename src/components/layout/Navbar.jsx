@@ -83,7 +83,7 @@ export default function Navbar() {
           </a>
 
           {/* Links no azul da marca; no hover escurecem para o azul de empresas */}
-          <ul className="hidden items-center gap-6 md:flex xl:gap-8">
+          <ul className="hidden items-center gap-5 md:flex lg:gap-6 xl:gap-8">
             {links.map((link) => (
               <li key={link.href}>
                 <a
@@ -103,7 +103,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               size="md"
-              className={`min-w-0 shrink-0 gap-2 whitespace-nowrap transition-all duration-500 max-md:!px-4 max-md:!py-1.5 max-md:!text-sm md:min-w-[140px] ${
+              className={`min-w-0 shrink-0 gap-2 whitespace-nowrap transition-all duration-500 max-md:!px-4 max-md:!py-1.5 max-md:!text-sm md:max-lg:!px-5 md:max-lg:!text-lg lg:min-w-[140px] ${
                 scrolled ? "!rounded-full" : ""
               }`}
             >

@@ -1,5 +1,5 @@
 import Button from "../ui/Button";
-import CircuitLines from "../ui/CircuitLines";
+import CircuitLines, { FloatingIcons } from "../ui/CircuitLines";
 import nuvem from "../../assets/logo/htech-nuvem.png";
 import cidade from "../../assets/bg/cidade.svg";
 
@@ -48,16 +48,24 @@ export default function Hero() {
         }}
       />
 
-<h1 className="relative z-10 mx-auto mb-20 -mt-10 w-fit bg-[linear-gradient(135deg,#0B2BC4,#5AB0FF)] bg-clip-text pb-2 text-center text-4xl font-semibold text-transparent md:text-6xl">
+<h1 className="relative z-10 mx-auto mb-8 -mt-10 lg:mb-20 w-fit bg-[linear-gradient(135deg,#0B2BC4,#5AB0FF)] bg-clip-text pb-2 text-center text-4xl font-semibold text-transparent md:text-6xl">
   Comunicação moderna <br /> e eficiente
 </h1>
 
-      {/* Círculo da nuvem + linhas de circuito.
-          --s é a escala do conjunto: o círculo (200px) e as linhas (1600x600) crescem e diminuem juntos,
-          para os ícones das pontas nunca saírem da tela.
-          No celular (abaixo de md) fica no tamanho cheio: as linhas saem pelas laterais de propósito. */}
-      <div className="relative z-10 mb-16 flex items-center justify-center [--s:1] md:[--s:0.54] lg:[--s:0.72] xl:[--s:0.9] min-[1440px]:[--s:1]">
-        <CircuitLines className="absolute left-1/2 top-1/2 h-[calc(600px*var(--s))] w-[calc(1600px*var(--s))] max-w-none -translate-x-1/2 -translate-y-1/2 text-blue" />
+      {/* Círculo da nuvem + ícones.
+          --s é a escala da nuvem (200px x --s).
+          - Computador (lg+): linhas de circuito (1600x600), que crescem e diminuem junto com a nuvem.
+          - Tablet e celular (abaixo de lg): sem linhas, ícones flutuando em volta da nuvem,
+            numa área com altura fixa (480px no celular, 460px entre 560 e 767px, 420px no tablet). */}
+      <div className="relative z-10 mb-10 flex w-full max-w-[460px] items-center justify-center [--s:0.6] max-lg:h-[480px] min-[560px]:max-w-[720px] min-[560px]:[--s:0.8] min-[560px]:max-md:h-[460px] md:max-w-[880px] md:[--s:0.8] md:max-lg:h-[420px] lg:mb-16 lg:w-auto lg:max-w-none lg:[--s:0.72] xl:[--s:0.9] min-[1440px]:[--s:1]">
+        <CircuitLines className="absolute left-1/2 top-1/2 hidden h-[calc(600px*var(--s))] w-[calc(1600px*var(--s))] max-w-none -translate-x-1/2 -translate-y-1/2 text-blue lg:block" />
+
+        {/* Brilho atrás da nuvem e ícones flutuando (só abaixo de lg) */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[calc(400px*var(--s))] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(90,176,255,0.28),transparent)] lg:hidden"
+        />
+        <FloatingIcons className="text-blue lg:hidden" />
 
         <div
           className="relative z-10 flex aspect-square w-[calc(200px*var(--s))] items-center justify-center rounded-full bg-secondary-gray"
