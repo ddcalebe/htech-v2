@@ -95,10 +95,10 @@ function Node({ label, icon, index = 0 }) {
   );
 }
 
-/** Linha tracejada animada entre os itens, com um "pacote" de luz passando (só no desktop/tablet) */
+/** Linha tracejada animada entre os itens, com um "pacote" de luz passando (fileira do tablet/computador) */
 function Line({ reverse = false, index = 0 }) {
   return (
-    <div aria-hidden="true" className="relative hidden h-0.5 min-w-4 flex-1 md:block">
+    <div aria-hidden="true" className="relative h-0.5 min-w-4 flex-1">
       <div className={`hub-line absolute inset-0 ${reverse ? "hub-line-rev" : ""}`} />
       <span
         className={`hub-packet absolute top-1/2 h-2 w-2 -translate-y-1/2 rounded-full bg-white shadow-[0_0_10px_3px_rgba(255,255,255,0.8)] ${
@@ -106,6 +106,111 @@ function Line({ reverse = false, index = 0 }) {
         }`}
         style={{ animationDelay: `${index * -0.7}s` }}
       />
+    </div>
+  );
+}
+
+/** Círculo central: anel girando, ondas saindo e a logo da Htech. `small` = versão do celular */
+function HubCore({ title, small = false, className = "" }) {
+  return (
+    <div className={`relative shrink-0 ${className}`}>
+      <span aria-hidden="true" className="hub-pulse absolute inset-0 rounded-full border-2 border-white/60" />
+      <span aria-hidden="true" className="hub-pulse absolute inset-0 rounded-full border-2 border-white/60 [animation-delay:-1.5s]" />
+      {/* Anel externo fino */}
+      <span aria-hidden="true" className="absolute -inset-3 rounded-full border border-white/25" />
+      <div
+        className={`hub-ring relative grid place-items-center rounded-full bg-[radial-gradient(circle_at_30%_25%,#1b3a9e,#071433_70%)] shadow-[0_0_50px_rgba(255,255,255,0.4),inset_0_0_30px_rgba(90,176,255,0.25)] ${
+          small ? "h-28 w-28" : "h-36 w-36"
+        }`}
+        role="img"
+        aria-label={title}
+      >
+        {/* Logo da Htech num círculo branco */}
+        <span
+          className={`grid place-items-center rounded-full bg-white shadow-[0_0_24px_rgba(255,255,255,0.5)] ${
+            small ? "h-16 w-16" : "h-20 w-20"
+          }`}
+        >
+          <img src={htechCloud} alt="" className={small ? "w-10" : "w-12"} />
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * Versão do celular (abaixo de md): a logo no centro e as integrações em volta, numa órbita,
+ * cada uma ligada ao centro por uma linha tracejada com luz correndo para dentro.
+ */
+// Distância de cada integração até o centro, em % da largura do quadro
+const ORBIT_RADIUS = 37;
+
+function HubOrbit({ integrations, title }) {
+  const count = integrations.length;
+  // Começa na diagonal de cima à direita, para nenhum item ficar colado em cima ou embaixo do centro
+  const spots = integrations.map((item, i) => {
+    const angle = ((-90 + 180 / count + (360 / count) * i) * Math.PI) / 180;
+    return {
+      ...item,
+      x: 50 + ORBIT_RADIUS * Math.cos(angle),
+      y: 50 + ORBIT_RADIUS * Math.sin(angle),
+    };
+  });
+
+  return (
+    <div className="relative mx-auto aspect-square w-full max-w-[340px] md:hidden">
+      {/* Brilho atrás */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.18),transparent)]"
+      />
+
+      {/* Órbita e linhas até o centro */}
+      <svg viewBox="0 0 100 100" aria-hidden="true" className="absolute inset-0 h-full w-full overflow-visible">
+        <circle
+          cx="50"
+          cy="50"
+          r={ORBIT_RADIUS}
+          fill="none"
+          stroke="rgba(255,255,255,0.22)"
+          strokeWidth="1"
+          strokeDasharray="2 5"
+          vectorEffect="non-scaling-stroke"
+          className="hub-orbit"
+        />
+        {spots.map((spot, i) => (
+          <line
+            key={spot.label}
+            x1={spot.x}
+            y1={spot.y}
+            x2="50"
+            y2="50"
+            stroke="#ffffff"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="4 10"
+            vectorEffect="non-scaling-stroke"
+            className="hub-spoke"
+            style={{ animationDelay: `${i * -0.3}s` }}
+          />
+        ))}
+      </svg>
+
+      {/* Centro */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <HubCore title={title} small />
+      </div>
+
+      {/* Integrações em volta */}
+      {spots.map((spot, i) => (
+        <div
+          key={spot.label}
+          className="absolute -translate-x-1/2 -translate-y-1/2"
+          style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
+        >
+          <Node label={spot.label} icon={spot.icon} index={i} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -155,25 +260,33 @@ export default function IntegrationsHub({
         .hub-pulse { animation: hub-pulse 3s ease-out infinite; }
         @keyframes hub-pulse { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.9); opacity: 0; } }
 
+        /* Celular: linhas tracejadas correndo para o centro e órbita girando devagar */
+        .hub-spoke { animation: hub-spoke 1.2s linear infinite; }
+        @keyframes hub-spoke { to { stroke-dashoffset: -14; } }
+        .hub-orbit { transform-origin: 50px 50px; animation: hub-spin 40s linear infinite; }
+
         /* Integrações flutuando de leve */
         .hub-node { animation: hub-float 5s ease-in-out infinite; }
         @keyframes hub-float { 50% { translate: 0 -5px; } }
 
         @media (prefers-reduced-motion: reduce) {
-          .hub-line, .hub-ring::before, .hub-packet, .hub-pulse, .hub-node { animation: none; }
+          .hub-line, .hub-ring::before, .hub-packet, .hub-pulse, .hub-node, .hub-spoke, .hub-orbit { animation: none; }
           .hub-packet { display: none; }
         }
       `}</style>
 
-      {/* Fileira: ferramentas da esquerda — círculo central — ferramentas da direita */}
-      <div className="relative flex flex-col items-center gap-12 md:flex-row md:gap-0">
+      {/* Celular: logo no centro e integrações em volta */}
+      <HubOrbit integrations={integrations} title={title} />
+
+      {/* Tablet e computador: ferramentas da esquerda — círculo central — ferramentas da direita */}
+      <div className="relative hidden items-center md:flex">
         {/* Brilho suave atrás de toda a fileira */}
         <span
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-64 w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(255,255,255,0.18),transparent)]"
         />
         {/* Esquerda: as linhas apontam para o centro */}
-        <div className="flex flex-1 flex-wrap items-center justify-center gap-x-6 gap-y-10 md:flex-nowrap md:gap-0">
+        <div className="flex flex-1 items-center justify-center">
           {left.map((item, i) => (
             <div key={item.label} className="contents">
               {i > 0 && <Line reverse index={i} />}
@@ -183,26 +296,11 @@ export default function IntegrationsHub({
           {left.length > 0 && <Line reverse index={left.length} />}
         </div>
 
-        {/* Círculo central (fim das linhas do CardConnector): anel girando, ondas saindo e a logo da Htech */}
-        <div className="relative order-first mx-3 shrink-0 md:order-none">
-          <span aria-hidden="true" className="hub-pulse absolute inset-0 rounded-full border-2 border-white/60" />
-          <span aria-hidden="true" className="hub-pulse absolute inset-0 rounded-full border-2 border-white/60 [animation-delay:-1.5s]" />
-          {/* Anel externo fino */}
-          <span aria-hidden="true" className="absolute -inset-3 rounded-full border border-white/25" />
-          <div
-            className="hub-ring relative grid h-36 w-36 place-items-center rounded-full bg-[radial-gradient(circle_at_30%_25%,#1b3a9e,#071433_70%)] shadow-[0_0_50px_rgba(255,255,255,0.4),inset_0_0_30px_rgba(90,176,255,0.25)]"
-            role="img"
-            aria-label={title}
-          >
-            {/* Logo da Htech num círculo branco */}
-            <span className="grid h-20 w-20 place-items-center rounded-full bg-white shadow-[0_0_24px_rgba(255,255,255,0.5)]">
-              <img src={htechCloud} alt="" className="w-12" />
-            </span>
-          </div>
-        </div>
+        {/* Círculo central (fim das linhas do CardConnector) */}
+        <HubCore title={title} className="mx-3" />
 
         {/* Direita: as linhas saem do centro */}
-        <div className="flex flex-1 flex-wrap items-center justify-center gap-x-6 gap-y-10 md:flex-nowrap md:gap-0">
+        <div className="flex flex-1 items-center justify-center">
           {right.length > 0 && <Line index={0} />}
           {right.map((item, i) => (
             <div key={item.label} className="contents">
@@ -214,7 +312,7 @@ export default function IntegrationsHub({
       </div>
 
       {/* Texto */}
-      <div className="mt-16 flex flex-col items-center gap-2 text-center md:mt-14">
+      <div className="mt-10 flex flex-col items-center gap-2 text-center md:mt-14">
         <h4 className="text-3xl font-semibold uppercase tracking-wide">
           <span className="bg-[linear-gradient(135deg,#ffffff_10%,#5AB0FF)] bg-clip-text text-transparent">{title}</span>
         </h4>

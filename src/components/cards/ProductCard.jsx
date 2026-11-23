@@ -130,9 +130,11 @@ export default function ProductCard({
 
       {/* Esquerda: badge, título, subtítulo e imagem */}
       <div className="relative flex min-w-0 flex-col">
-        {/* Ícones dos canais flutuando no espaço ao lado do título (só em telas grandes) */}
+        {/* Ícones dos canais flutuando no espaço ao lado do título.
+            Aparecem a partir de sm (640px): no card vertical (abaixo de lg) também há espaço à direita do título.
+            No celular bem estreito o título ocupa a largura toda, então ficam escondidos. */}
         {floatingIcons.length > 0 && (
-          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 hidden h-44 w-[38%] lg:block">
+          <div aria-hidden="true" className="pointer-events-none absolute right-0 top-0 hidden h-44 w-[38%] sm:block">
             {floatingIcons.slice(0, 3).map((icon, i) => (
               <span
                 key={i}

@@ -7,7 +7,7 @@ import Clients from "./components/sections/Clients";
 import Footer from "./components/layout/Footer";
 import CustomCursor from "./components/ui/CustomCursor";
 import Faq from "./components/sections/Faq";
-import WhatsAppButton from "./components/ui/WhatsAppButton";
+import WhatsAppButton from "./components/ui/WhatsappButton";
 import useScrollReveal from "./hooks/useScrollReveal";
 
 export default function App() {

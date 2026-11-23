@@ -4,6 +4,7 @@ import smartBox from "../../assets/services/smartbox.webp";
 import intercom from "../../assets/services/intercom.webp";
 import accessControl from "../../assets/services/access-control.webp";
 import cftv from "../../assets/services/cftv.webp";
+import appGestao from "../../assets/services/app-gestao.webp";
 import { whatsappSolutionLink } from "../../config/contact";
 
 // TODO: revisar os textos (exemplos)
@@ -31,6 +32,7 @@ const cards = [
     href: whatsappSolutionLink("App de Gestão", "condominio"),
     reverse: true,
     className: "lg:col-span-5",
+    image: appGestao,
   },
   {
     title: "Interfonia\nSem Fio",

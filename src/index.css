@@ -78,3 +78,12 @@ html {
     animation: none;
   }
 }
+/* ===== Emenda entre seções =====
+   Com zoom do navegador ou escala do Windows (125%, 150%), a borda de uma seção
+   pode cair "entre" dois pixels e aparecer uma linha fina entre elas.
+   Cada seção sobe 1px por cima da anterior para cobrir essa fresta. */
+main > section + section,
+main + footer {
+  position: relative;
+  margin-top: -1px;
+}

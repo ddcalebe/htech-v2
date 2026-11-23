@@ -52,12 +52,15 @@ export default function Hero() {
   Comunicação moderna <br /> e eficiente
 </h1>
 
-      {/* Círculo da nuvem + linhas de circuito */}
-      <div className="relative z-10 mb-16 flex items-center justify-center">
-        <CircuitLines className="absolute left-1/2 top-1/2 h-[600px] w-[1600px] max-w-none -translate-x-1/2 -translate-y-1/2 text-blue" />
+      {/* Círculo da nuvem + linhas de circuito.
+          --s é a escala do conjunto: o círculo (200px) e as linhas (1600x600) crescem e diminuem juntos,
+          para os ícones das pontas nunca saírem da tela.
+          No celular (abaixo de md) fica no tamanho cheio: as linhas saem pelas laterais de propósito. */}
+      <div className="relative z-10 mb-16 flex items-center justify-center [--s:1] md:[--s:0.54] lg:[--s:0.72] xl:[--s:0.9] min-[1440px]:[--s:1]">
+        <CircuitLines className="absolute left-1/2 top-1/2 h-[calc(600px*var(--s))] w-[calc(1600px*var(--s))] max-w-none -translate-x-1/2 -translate-y-1/2 text-blue" />
 
         <div
-          className="relative z-10 flex aspect-square w-50 items-center justify-center rounded-full bg-secondary-gray"
+          className="relative z-10 flex aspect-square w-[calc(200px*var(--s))] items-center justify-center rounded-full bg-secondary-gray"
           style={{
             boxShadow:
               "-14px 0 40px -8px color-mix(in srgb, var(--color-blue) 45%, transparent), 14px 0 40px -8px rgb(75 85 99 / 0.45)",
@@ -76,7 +79,7 @@ export default function Hero() {
               mask: "linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0)",
             }}
           />
-          <img src={nuvem} alt="Logo Htech Nuvem" className="relative h-30" />
+          <img src={nuvem} alt="Logo Htech Nuvem" className="relative h-[calc(120px*var(--s))]" />
         </div>
       </div>
 

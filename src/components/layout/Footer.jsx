@@ -54,11 +54,14 @@ export default function Footer() {
         className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-transparent via-[#0A84FF] to-transparent"
       />
 
-      <div className="mx-auto grid max-w-7xl gap-12 px-6 py-14 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+      {/* Celular: tudo empilhado e centralizado.
+          Tablet (sm/md): marca numa linha inteira em cima e as 3 colunas lado a lado embaixo.
+          Computador (lg): as 4 colunas na mesma linha. */}
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 text-center sm:grid-cols-3 sm:gap-8 sm:text-left lg:grid-cols-[1.4fr_1fr_1fr_1.2fr] lg:gap-12">
         {/* Marca */}
-        <div>
-          <img src={logo} alt="Htech" className="w-40" />
-          <p className="mt-4 max-w-xs text-sm leading-relaxed">
+        <div className="sm:col-span-3 lg:col-span-1">
+          <img src={logo} alt="Htech" className="mx-auto w-40 sm:mx-0" />
+          <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed sm:mx-0">
             Comunicação moderna e eficiente para empresas e condomínios: atendimento, telefonia,
             segurança e gestão num só lugar.
           </p>
@@ -127,11 +130,11 @@ export default function Footer() {
 
       {/* Linha final */}
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-2 px-6 py-5 text-center text-xs text-white/50 md:flex-row md:justify-between md:text-left">
           <p>
             © {year} Htech Soluções. Todos os direitos reservados. CNPJ {contact.cnpj}
           </p>
-          <button type="button" onClick={() => setPrivacyOpen(true)}>
+          <button type="button" onClick={() => setPrivacyOpen(true)} className="transition hover:text-white">
             Política de Privacidade
           </button>
         </div>
