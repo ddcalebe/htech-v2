@@ -92,11 +92,35 @@ export default function Faq() {
         {/* Direita: perguntas (abre e fecha sem JavaScript, com <details>).
             Aparecem ao rolar, uma depois da outra (80ms de diferença entre cada) */}
         <div className="flex flex-col gap-3">
+          <style>{`
+            /* Abrir e fechar a pergunta com a altura crescendo suave
+               (navegadores mais novos; nos outros abre direto, só com o efeito da resposta) */
+            .faq-item { interpolate-size: allow-keywords; }
+            .faq-item::details-content {
+              block-size: 0;
+              overflow: hidden;
+              transition: block-size 0.45s cubic-bezier(0.2, 0.7, 0.2, 1), content-visibility 0.45s allow-discrete;
+            }
+            .faq-item[open]::details-content { block-size: auto; }
+
+            /* A resposta sobe um pouco e aparece, no mesmo ritmo da animação de rolagem do site */
+            .faq-item[open] .faq-answer { animation: faq-answer 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+            @keyframes faq-answer {
+              from { opacity: 0; transform: translateY(-8px); }
+              to { opacity: 1; transform: none; }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              .faq-item::details-content { transition: none; }
+              .faq-item[open] .faq-answer { animation: none; }
+            }
+          `}</style>
+
           {faqs.map((item, i) => (
             <details
               key={item.question}
               style={{ "--reveal-delay": `${150 + i * 80}ms` }}
-              className="reveal group rounded-xl border border-[#0B1F5E]/10 bg-white transition-colors hover:border-[#0A84FF]/30 open:border-[#0A84FF]/25 open:shadow-lg open:shadow-[#0B1F5E]/10"
+              className="faq-item reveal group rounded-xl border border-[#0B1F5E]/10 bg-white transition-colors hover:border-[#0A84FF]/30 open:border-[#0A84FF]/25 open:shadow-lg open:shadow-[#0B1F5E]/10"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 [&::-webkit-details-marker]:hidden">
                 <span className="flex flex-col gap-1">
@@ -108,7 +132,7 @@ export default function Faq() {
                 </span>
               </summary>
 
-              <p className="px-5 pb-5 leading-relaxed text-[#0B1F5E]/80">{item.answer}</p>
+              <p className="faq-answer px-5 pb-5 leading-relaxed text-[#0B1F5E]/80">{item.answer}</p>
             </details>
           ))}
         </div>
