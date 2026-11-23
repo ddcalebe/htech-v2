@@ -60,15 +60,19 @@ function PlusIcon() {
   );
 }
 
-export default function Faq() {
+/**
+ * fromColor: cor da seção que vem antes do FAQ. O fundo do FAQ começa nessa cor
+ * e vai clareando até o cinza claro (#f5f5f5). Ex.: "#171717" (Clientes) ou "var(--color-condo)" (Condomínios).
+ */
+export default function Faq({ fromColor = "#171717" }) {
   return (
     <section
       id="faq"
       className="text-[#0B1F5E] pt-50 pb-20"
       style={{
-        // Transição suave do preto da seção anterior para o branco (paradas em curva, sem "faixa" no meio)
+        // Transição suave da cor da seção anterior (fromColor) para o cinza claro (paradas em curva, sem "faixa" no meio)
       background:
-        "linear-gradient(to bottom in oklch, #171717 0, color-mix(in oklch, #171717 92%, #f5f5f5) 60px, color-mix(in oklch, #171717 75%, #f5f5f5) 130px, color-mix(in oklch, #171717 50%, #f5f5f5) 200px, color-mix(in oklch, #171717 25%, #f5f5f5) 270px, color-mix(in oklch, #171717 8%, #f5f5f5) 330px, #f5f5f5 380px, #f5f5f5 100%)",
+        `linear-gradient(to bottom in oklch, ${fromColor} 0, color-mix(in oklch, ${fromColor} 92%, #f5f5f5) 60px, color-mix(in oklch, ${fromColor} 75%, #f5f5f5) 130px, color-mix(in oklch, ${fromColor} 50%, #f5f5f5) 200px, color-mix(in oklch, ${fromColor} 25%, #f5f5f5) 270px, color-mix(in oklch, ${fromColor} 8%, #f5f5f5) 330px, #f5f5f5 380px, #f5f5f5 100%)`,
       }}
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-20 pt-80 lg:grid-cols-[1fr_1.6fr] lg:gap-16">

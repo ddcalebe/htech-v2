@@ -10,6 +10,11 @@ import Faq from "./components/sections/Faq";
 import WhatsAppButton from "./components/ui/WhatsappButton";
 import useScrollReveal from "./hooks/useScrollReveal";
 
+// Seção "Clientes" (logos + depoimentos) escondida por enquanto.
+// Para trazer de volta, troque para true: ela volta entre Condomínios e FAQ,
+// e o degradê do FAQ passa a sair do preto dela automaticamente.
+const SHOW_CLIENTS = false;
+
 export default function App() {
   useScrollReveal();
 
@@ -22,8 +27,8 @@ export default function App() {
         <Intro />
         <CorporateSolutions />
         <CondoSolutions />
-        <Clients />
-        <Faq />
+        {SHOW_CLIENTS && <Clients />}
+        <Faq fromColor={SHOW_CLIENTS ? "#171717" : "var(--color-condo)"} />
       </main>
       <Footer />
       <WhatsAppButton />
