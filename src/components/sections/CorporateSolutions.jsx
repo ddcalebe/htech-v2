@@ -160,8 +160,9 @@ export default function CorporateSolutions() {
           <IntegrationsHub
             className="reveal md:col-span-2"
             integrations={integrations}
-            description="Conecta seu CRM a outros sistemas e plataformas, sincroniza informações e automatiza processos para tornar sua operação mais prática e eficiente."
-            href="#integracoes"
+            eyebrow="Seus sistemas conversando entre si"
+            description="Conectamos a nossa plataforma aos sistemas que a sua empresa já usa: as informações ficam sincronizadas e os processos acontecem sozinhos, sem retrabalho."
+            benefits={["Dados sincronizados", "Processos automáticos", "Menos retrabalho"]}
           />
         </div>
 

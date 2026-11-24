@@ -6,7 +6,10 @@ import htechCloud from "../../assets/logo/htech-nuvem.png";
  *
  * Props:
  *  - integrations: lista de { label, icon } (metade vai para a esquerda, metade para a direita)
- *  - title, description, linkLabel, href
+ *  - title, description
+ *  - eyebrow: texto pequeno acima do título
+ *  - benefits: lista curta de vantagens, mostradas em etiquetas embaixo da descrição
+ *  - note: frase de destaque no final (ex.: integrações sob medida)
  */
 
 // Ícones genéricos (traço). Para usar outro, adicione aqui e use a chave em `icon`.
@@ -82,13 +85,13 @@ function Node({ label, icon, index = 0 }) {
   return (
     <div className="hub-node relative shrink-0" style={{ animationDelay: `${index * -1.3}s` }}>
       {/* Anel de vidro + círculo branco com o ícone */}
-      <div className="grid h-[68px] w-[68px] place-items-center rounded-full border border-white/40 bg-white/10 shadow-[0_10px_30px_rgba(4,12,50,0.35)] backdrop-blur-sm">
-        <div className="grid h-12 w-12 place-items-center rounded-full bg-white text-corp shadow-[inset_0_-3px_8px_rgba(21,61,205,0.15)]">
-          <Icon name={icon} className="h-6 w-6" />
+      <div className="grid h-[68px] w-[68px] place-items-center rounded-full border border-white/40 bg-white/10 shadow-[0_10px_30px_rgba(4,12,50,0.35)] backdrop-blur-sm md:h-[84px] md:w-[84px]">
+        <div className="grid h-12 w-12 place-items-center rounded-full bg-white text-corp shadow-[inset_0_-3px_8px_rgba(21,61,205,0.15)] md:h-[60px] md:w-[60px]">
+          <Icon name={icon} className="h-6 w-6 md:h-7 md:w-7" />
         </div>
       </div>
       {/* Nome numa pílula embaixo do círculo, sem mudar a altura do item */}
-      <span className="absolute left-1/2 top-full mt-2.5 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/20 bg-[#071433]/50 px-2.5 py-0.5 text-xs font-medium text-white/90 backdrop-blur-sm">
+      <span className="absolute left-1/2 top-full mt-2.5 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/20 bg-[#071433]/50 px-2.5 py-0.5 text-xs font-medium text-white/90 backdrop-blur-sm md:px-3 md:py-1 md:text-sm">
         {label}
       </span>
     </div>
@@ -120,7 +123,7 @@ function HubCore({ title, small = false, className = "" }) {
       <span aria-hidden="true" className="absolute -inset-3 rounded-full border border-white/25" />
       <div
         className={`hub-ring relative grid place-items-center rounded-full bg-[radial-gradient(circle_at_30%_25%,#1b3a9e,#071433_70%)] shadow-[0_0_50px_rgba(255,255,255,0.4),inset_0_0_30px_rgba(90,176,255,0.25)] ${
-          small ? "h-28 w-28" : "h-36 w-36"
+          small ? "h-28 w-28" : "h-44 w-44"
         }`}
         role="img"
         aria-label={title}
@@ -128,10 +131,10 @@ function HubCore({ title, small = false, className = "" }) {
         {/* Logo da Htech num círculo branco */}
         <span
           className={`grid place-items-center rounded-full bg-white shadow-[0_0_24px_rgba(255,255,255,0.5)] ${
-            small ? "h-16 w-16" : "h-20 w-20"
+            small ? "h-16 w-16" : "h-24 w-24"
           }`}
         >
-          <img src={htechCloud} alt="" className={small ? "w-10" : "w-12"} />
+          <img src={htechCloud} alt="" className={small ? "w-10" : "w-14"} />
         </span>
       </div>
     </div>
@@ -219,8 +222,9 @@ export default function IntegrationsHub({
   integrations = [],
   title = "Integrações",
   description,
-  linkLabel = "Ver integrações",
-  href = "#",
+  eyebrow,
+  benefits = [],
+  note,
   className = "",
 }) {
   const half = Math.ceil(integrations.length / 2);
@@ -228,7 +232,13 @@ export default function IntegrationsHub({
   const right = integrations.slice(half);
 
   return (
-    <div className={`text-white ${className}`}>
+    // Painel em destaque: vidro azul com borda clara e brilho, para o hub não se perder no fundo da seção
+    <div
+      className={`relative isolate overflow-hidden rounded-[2rem] border border-white/20 bg-[linear-gradient(160deg,rgba(255,255,255,0.14),rgba(255,255,255,0.04))] px-5 py-10 text-white shadow-[0_30px_80px_-20px_rgba(4,12,50,0.6),inset_0_1px_0_rgba(255,255,255,0.25)] md:px-10 md:py-14 ${className}`}
+    >
+      {/* Brilhos de fundo */}
+      <span aria-hidden="true" className="pointer-events-none absolute -top-32 left-1/2 -z-10 h-72 w-[70%] -translate-x-1/2 rounded-full bg-[#5AB0FF]/30 blur-3xl" />
+      <span aria-hidden="true" className="pointer-events-none absolute -bottom-40 left-1/2 -z-10 h-72 w-[60%] -translate-x-1/2 rounded-full bg-white/10 blur-3xl" />
       <style>{`
         .hub-line {
           background: repeating-linear-gradient(90deg, #ffffff 0 10px, transparent 10px 34px);
@@ -312,15 +322,39 @@ export default function IntegrationsHub({
       </div>
 
       {/* Texto */}
-      <div className="mt-10 flex flex-col items-center gap-2 text-center md:mt-14">
-        <h4 className="text-3xl font-semibold uppercase tracking-wide">
+      <div className="mt-12 flex flex-col items-center gap-3 text-center md:mt-16">
+        {eyebrow && (
+          <span className="rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#A8D4FF]">
+            {eyebrow}
+          </span>
+        )}
+        <h4 className="text-4xl font-bold uppercase tracking-wide md:text-5xl">
           <span className="bg-[linear-gradient(135deg,#ffffff_10%,#5AB0FF)] bg-clip-text text-transparent">{title}</span>
         </h4>
-        {description && <p className="max-w-2xl text-white/80">{description}</p>}
-        {linkLabel && (
-          <a href={href} className="font-semibold text-white/90 underline-offset-4 transition hover:text-white hover:underline">
-            {linkLabel} →
-          </a>
+        {/* text-balance: distribui as palavras entre as linhas, sem deixar uma palavra sozinha na última */}
+        {description && <p className="max-w-2xl text-balance text-lg text-white/85">{description}</p>}
+        {benefits.length > 0 && (
+          <ul className="mt-2 flex flex-wrap justify-center gap-2">
+            {benefits.map((b) => (
+              <li
+                key={b}
+                className="flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-sm font-medium text-white"
+              >
+                <svg viewBox="0 0 24 24" className="h-4 w-4 text-[#A8D4FF]" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12l5 5L20 7" />
+                </svg>
+                {b}
+              </li>
+            ))}
+          </ul>
+        )}
+        {note && (
+          <p className="mt-4 flex max-w-2xl items-start gap-2.5 rounded-2xl border border-[#A8D4FF]/40 bg-[#071433]/30 px-4 py-3 text-left text-sm text-white md:items-center md:text-base">
+            <svg viewBox="0 0 24 24" className="mt-0.5 h-5 w-5 shrink-0 text-[#A8D4FF] md:mt-0" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9Z" />
+            </svg>
+            <span>{note}</span>
+          </p>
         )}
       </div>
     </div>

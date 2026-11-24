@@ -1,6 +1,7 @@
 import SectionHeader from "../ui/SectionHeader";
 import CondoCard from "../cards/CondoCard";
 import smartBox from "../../assets/services/smartbox.webp";
+import smartLocker from "../../assets/services/smartlocker.webp";
 import intercom from "../../assets/services/intercom.webp";
 import accessControl from "../../assets/services/access-control.webp";
 import cftv from "../../assets/services/cftv.webp";
@@ -9,9 +10,10 @@ import { whatsappSolutionLink } from "../../config/contact";
 
 // TODO: revisar os textos (exemplos)
 // Ordem = posição na grade (no computador, 12 colunas):
-//   Fileira de cima: Smart Box e App de Gestão lado a lado, do mesmo tamanho (cards em pé)
-//   Embaixo: Interfonia e Controle de Acesso empilhados à esquerda (cards deitados)
-//            e CFTV alto à direita, ocupando as duas fileiras
+//   Fileira de cima: Smart Box e Smart Locker (encomendas) lado a lado, do mesmo tamanho (cards em pé)
+//   Meio: Interfonia e Controle de Acesso empilhados à esquerda (cards deitados)
+//         e CFTV alto à direita, ocupando as duas fileiras
+//   Final: App de Gestão numa faixa na largura toda (card deitado)
 // O href de cada card abre o WhatsApp com o nome da solução na mensagem.
 const cards = [
   {
@@ -26,13 +28,14 @@ const cards = [
     image: smartBox,
   },
   {
-    title: "App de\nGestão",
-    description: "Comunicados, reservas de áreas comuns, visitantes e boletos do condomínio em um só app.",
-    highlights: ["Comunicados", "Reservas", "Visitantes", "Boletos"],
-    href: whatsappSolutionLink("App de Gestão", "condominio"),
+    title: "Smart\nLocker",
+    badge: "Novo",
+    description: "Armários inteligentes no hall para receber várias encomendas ao mesmo tempo, com retirada por senha.",
+    highlights: ["Vários tamanhos", "Retirada por senha", "Aviso no celular"],
+    href: whatsappSolutionLink("Smart Locker", "condominio"),
     tall: true,
     className: "lg:col-span-6",
-    image: appGestao,
+    image: smartLocker,
   },
   {
     title: "Interfonia\nSem Fio",
@@ -59,6 +62,22 @@ const cards = [
     reverse: true,
     className: "lg:col-span-6",
     image: accessControl,
+  },
+  {
+    title: "App de\nGestão",
+    description: "O condomínio inteiro no celular: mais segurança e praticidade para moradores, portaria e síndico.",
+    // Tópicos no mesmo formato dos cards de Empresas
+    features: [
+      { icon: "door", title: "Portas e portões no celular:", text: "abertura remota e histórico de cada acesso." },
+      { icon: "qr", title: "Visitantes:", text: "convites por QR Code e aviso direto para a portaria." },
+      { icon: "camera", title: "Câmeras ao vivo:", text: "acompanhe as áreas do condomínio pelo app." },
+      { icon: "box", title: "Encomendas:", text: "aviso no celular quando chegar algo para você." },
+      { icon: "calendar", title: "Reservas e avisos:", text: "agende áreas comuns e acompanhe o mural do condomínio." },
+      { icon: "receipt", title: "Chamados e boletos:", text: "abra chamados de manutenção e tire a 2ª via do boleto." },
+    ],
+    href: whatsappSolutionLink("App de Gestão", "condominio"),
+    className: "lg:col-span-12",
+    image: appGestao,
   },
 ];
 

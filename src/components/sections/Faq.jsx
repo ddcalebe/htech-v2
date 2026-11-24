@@ -27,9 +27,9 @@ const faqs = [
   },
   {
     type: "Condomínios",
-    question: "Como funciona o Smart Box no dia a dia?",
+    question: "Qual a diferença entre o Smart Box e o Smart Locker?",
     answer:
-      "O entregador deposita a encomenda em um dos armários e o morador recebe um aviso no celular com uma senha única. Com ela, retira a encomenda quando quiser, a qualquer hora, sem depender da portaria.",
+      "O Smart Box é uma caixa de entregas instalada na entrada do condomínio: o entregador deposita a encomenda e o morador retira com uma senha, a qualquer hora. O Smart Locker é um conjunto de armários inteligentes no hall, com portas de vários tamanhos, que recebe várias encomendas ao mesmo tempo. Em ambos, o morador recebe um aviso no celular e retira sem depender da portaria.",
   },
   {
     type: "Todos",
