@@ -5,7 +5,7 @@ const faqs = [
     type: "Empresas",
     question: "Como funciona a implantação do CRM?",
     answer:
-      "Fazemos uma conversa inicial para entender seus canais de atendimento, configuramos o CRM com as suas integrações e treinamos a equipe. Em média, a implantação leva [prazo].",
+      "Fazemos uma conversa inicial para entender seus canais de atendimento, configuramos o CRM com as suas integrações e treinamos a equipe. Em média, a implantação leva entre 5 a 7 dias.",
   },
   {
     type: "Empresas",
@@ -27,18 +27,19 @@ const faqs = [
   },
   {
     type: "Condomínios",
-    question: "O que acontece se a internet do condomínio cair?",
-    answer: "[Explicar como o controle de acesso e a portaria funcionam sem internet.]",
+    question: "Como funciona o Smart Box no dia a dia?",
+    answer:
+      "O entregador deposita a encomenda em um dos armários e o morador recebe um aviso no celular com uma senha única. Com ela, retira a encomenda quando quiser, a qualquer hora, sem depender da portaria.",
   },
   {
     type: "Todos",
     question: "Existe contrato de fidelidade?",
-    answer: "[Explicar as condições de contrato e cancelamento.]",
+    answer: "Depende da modalidade de serviço prestada, existem contratos com e sem fidelidade.",
   },
   {
     type: "Todos",
     question: "Como funciona o suporte?",
-    answer: "[Canais de suporte, horários de atendimento e prazo de resposta.]",
+    answer: "Nossa central de suporte tem atendimento de triagem 24h e ações preventivas e corretivas em horário comercial.",
   },
 ];
 
